@@ -11,18 +11,24 @@ public class SeekerMovement : MonoBehaviour {
     //player object's rigidbody component
     private Rigidbody rgd;
 
+    //weapon to smack things with
     [SerializeField]
     GameObject stick;
 
+    //weapon's rigidbody
     private Rigidbody rgdStick;
 
+    //how far the weapon is from the front of the player
     [SerializeField]
     float frontOffset = 2;
 
+    //how far to the side of the player
     [SerializeField]
     float sideOffset = .5f;
 
+    //direction the player can face
     private enum Directions {LEFT,RIGHT,UP,DOWN};
+    //current facing direction
     Directions currentDirection;
 
 	// Use this for initialization
@@ -30,6 +36,7 @@ public class SeekerMovement : MonoBehaviour {
         //get the rigidbody component instance from object
         rgd = GetComponent<Rigidbody>();
 
+        //get the rigidbody component instance from the weapon object
         rgdStick = stick.GetComponent<Rigidbody>();
 	}
 	
@@ -43,10 +50,13 @@ public class SeekerMovement : MonoBehaviour {
         //move the player object
         rgd.MovePosition(new Vector3(moveX * (speed * Time.deltaTime), 0, moveY * (speed * Time.deltaTime)).normalized+transform.position);
 
+        //freeze the rotation of the weapon object
         rgdStick.freezeRotation = true;
 
+        //set the facing direction of the seeker object
         SetDirection(moveX, moveY);
 
+        //move the weapon with the player
         MoveStick();
 
 	}
@@ -109,8 +119,13 @@ public class SeekerMovement : MonoBehaviour {
         }
     }
 
-    private void AttackWithStick()
+    //make the stick swing and hit like bat
+    private void AttackWithStick()//TO-DO
     {
-
+        float hit = Input.GetAxis("Fire1");
+        if(hit!=0)
+        {
+            //animation and other needed code
+        }
     }
 }
