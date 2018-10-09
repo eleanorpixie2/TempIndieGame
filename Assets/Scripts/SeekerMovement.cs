@@ -26,10 +26,17 @@ public class SeekerMovement : MonoBehaviour {
     [SerializeField]
     float sideOffset = .5f;
 
+    [SerializeField]
+    float cameraOffset = 10;
+
     //direction the player can face
     private enum Directions {LEFT,RIGHT,UP,DOWN};
     //current facing direction
     Directions currentDirection;
+
+    //camera object
+    [SerializeField]
+    Camera camera;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +45,9 @@ public class SeekerMovement : MonoBehaviour {
 
         //get the rigidbody component instance from the weapon object
         rgdStick = stick.GetComponent<Rigidbody>();
+
+        camera = Camera.main;
+        camera.transform.position = transform.position+new Vector3(0,0,-cameraOffset);
 	}
 	
 	// Update is called once per frame
@@ -48,7 +58,7 @@ public class SeekerMovement : MonoBehaviour {
         float moveY = Input.GetAxis("Vertical");
 
         //move the player object
-        rgd.MovePosition(new Vector3(moveX * (speed * Time.deltaTime), 0, moveY * (speed * Time.deltaTime)).normalized+transform.position);
+        rgd.MovePosition(new Vector3(moveX, 0, moveY) * speed * Time.deltaTime + transform.position);
 
         //freeze the rotation of the weapon object
         rgdStick.freezeRotation = true;
@@ -56,10 +66,52 @@ public class SeekerMovement : MonoBehaviour {
         //set the facing direction of the seeker object
         SetDirection(moveX, moveY);
 
+        MoveToDirection();
+
         //move the weapon with the player
         MoveStick();
 
+        MoveCamera();
+
 	}
+
+    private void MoveCamera()
+    {
+        camera.transform.LookAt(this.transform);
+        switch (currentDirection)
+        {
+
+            case Directions.UP:
+                {
+
+                    camera.transform.position = transform.position + new Vector3(0, 0, -cameraOffset);
+                    break;
+
+                }
+            case Directions.DOWN:
+                {
+
+                    camera.transform.position = transform.position + new Vector3(0, 0,cameraOffset);
+                    break;
+
+                }
+            case Directions.LEFT:
+                {
+
+                    camera.transform.position = transform.position + new Vector3(cameraOffset,0, 0);
+                    break;
+
+                }
+            case Directions.RIGHT:
+                {
+
+                    camera.transform.position = transform.position + new Vector3(-cameraOffset,0,0);
+                    break;
+
+                }
+        }
+
+    }
 
     //change the player object's facing direction
     private void SetDirection(float x,float y)
@@ -67,26 +119,61 @@ public class SeekerMovement : MonoBehaviour {
         //left
         if(x<0)
         {
-            rgd.rotation = Quaternion.Euler(new Vector3(0, -90));
             currentDirection = Directions.LEFT;
         }
         //right
         if(x>0)
         {
-            rgd.rotation = Quaternion.Euler(new Vector3(0, 90));
             currentDirection = Directions.RIGHT;
         }
         //down
         if(y<0)
         {
-            rgd.rotation = Quaternion.Euler(new Vector3(0, 180));
             currentDirection = Directions.DOWN;
         }
         //up  
         if (y > 0)
         {
-            rgd.rotation = Quaternion.Euler(new Vector3(0, 360));
             currentDirection = Directions.UP;
+        }
+
+       
+
+    }
+
+    private void MoveToDirection()
+    {
+        switch (currentDirection)
+        {
+
+            case Directions.UP:
+                {
+
+                    rgd.rotation = Quaternion.Lerp(rgd.rotation, Quaternion.Euler(new Vector3(0, 360)), 0.1f);
+                    break;
+
+                }
+            case Directions.DOWN:
+                {
+
+                    rgd.rotation = Quaternion.Lerp(rgd.rotation, Quaternion.Euler(new Vector3(0, 180)), 0.1f);
+                    break;
+
+                }
+            case Directions.LEFT:
+                {
+
+                    rgd.rotation = Quaternion.Lerp(rgd.rotation, Quaternion.Euler(new Vector3(0, -90)), 0.1f);
+                    break;
+
+                }
+            case Directions.RIGHT:
+                {
+
+                    rgd.rotation = Quaternion.Lerp(rgd.rotation, Quaternion.Euler(new Vector3(0, 90)), 0.1f);
+                    break;
+
+                }
         }
     }
 
