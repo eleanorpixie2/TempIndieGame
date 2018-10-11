@@ -56,7 +56,6 @@ public class CharacterTester : MonoBehaviour
         InputHandler();
         AdjustCamera();
 
-
 	}
 
     void InputHandler()
