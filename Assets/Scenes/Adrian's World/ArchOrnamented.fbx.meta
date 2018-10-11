@@ -1,0 +1,280 @@
+fileFormatVersion: 2
+guid: 1244931a4301d4140b1266d33f0a4370
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BackOrnamentalArch
+    100004: BackOrnamentalArch1
+    100006: ForeOrnamentalArch
+    100008: ForeOrnamentalArch1
+    100010: Side
+    100012: Side 1
+    100014: Side 2
+    100016: Side 3
+    100018: Side1
+    100020: Side1 1
+    100022: Side10
+    100024: Side10 1
+    100026: Side11
+    100028: Side11 1
+    100030: Side12
+    100032: Side12 1
+    100034: Side13
+    100036: Side13 1
+    100038: Side14
+    100040: Side14 1
+    100042: Side15
+    100044: Side15 1
+    100046: Side16
+    100048: Side16 1
+    100050: Side2
+    100052: Side2 1
+    100054: Side3
+    100056: Side3 1
+    100058: Side4
+    100060: Side4 1
+    100062: Side5
+    100064: Side5 1
+    100066: Side6
+    100068: Side6 1
+    100070: Side7
+    100072: Side7 1
+    100074: Side8
+    100076: Side8 1
+    100078: Side9
+    100080: Side9 1
+    400000: //RootNode
+    400002: BackOrnamentalArch
+    400004: BackOrnamentalArch1
+    400006: ForeOrnamentalArch
+    400008: ForeOrnamentalArch1
+    400010: Side
+    400012: Side 1
+    400014: Side 2
+    400016: Side 3
+    400018: Side1
+    400020: Side1 1
+    400022: Side10
+    400024: Side10 1
+    400026: Side11
+    400028: Side11 1
+    400030: Side12
+    400032: Side12 1
+    400034: Side13
+    400036: Side13 1
+    400038: Side14
+    400040: Side14 1
+    400042: Side15
+    400044: Side15 1
+    400046: Side16
+    400048: Side16 1
+    400050: Side2
+    400052: Side2 1
+    400054: Side3
+    400056: Side3 1
+    400058: Side4
+    400060: Side4 1
+    400062: Side5
+    400064: Side5 1
+    400066: Side6
+    400068: Side6 1
+    400070: Side7
+    400072: Side7 1
+    400074: Side8
+    400076: Side8 1
+    400078: Side9
+    400080: Side9 1
+    2100000: lambert1
+    2300000: //RootNode
+    2300002: Side
+    2300004: Side 1
+    2300006: Side 2
+    2300008: Side 3
+    2300010: Side1
+    2300012: Side1 1
+    2300014: Side10
+    2300016: Side10 1
+    2300018: Side11
+    2300020: Side11 1
+    2300022: Side12
+    2300024: Side12 1
+    2300026: Side13
+    2300028: Side13 1
+    2300030: Side14
+    2300032: Side14 1
+    2300034: Side15
+    2300036: Side15 1
+    2300038: Side16
+    2300040: Side16 1
+    2300042: Side2
+    2300044: Side2 1
+    2300046: Side3
+    2300048: Side3 1
+    2300050: Side4
+    2300052: Side4 1
+    2300054: Side5
+    2300056: Side5 1
+    2300058: Side6
+    2300060: Side6 1
+    2300062: Side7
+    2300064: Side7 1
+    2300066: Side8
+    2300068: Side8 1
+    2300070: Side9
+    2300072: Side9 1
+    3300000: //RootNode
+    3300002: Side
+    3300004: Side 1
+    3300006: Side 2
+    3300008: Side 3
+    3300010: Side1
+    3300012: Side1 1
+    3300014: Side10
+    3300016: Side10 1
+    3300018: Side11
+    3300020: Side11 1
+    3300022: Side12
+    3300024: Side12 1
+    3300026: Side13
+    3300028: Side13 1
+    3300030: Side14
+    3300032: Side14 1
+    3300034: Side15
+    3300036: Side15 1
+    3300038: Side16
+    3300040: Side16 1
+    3300042: Side2
+    3300044: Side2 1
+    3300046: Side3
+    3300048: Side3 1
+    3300050: Side4
+    3300052: Side4 1
+    3300054: Side5
+    3300056: Side5 1
+    3300058: Side6
+    3300060: Side6 1
+    3300062: Side7
+    3300064: Side7 1
+    3300066: Side8
+    3300068: Side8 1
+    3300070: Side9
+    3300072: Side9 1
+    4300000: ArchOrnamented
+    4300002: Side
+    4300004: Side9
+    4300006: Side10
+    4300008: Side11
+    4300010: Side12
+    4300012: Side13
+    4300014: Side14
+    4300016: Side15
+    4300018: Side16
+    4300020: Side
+    4300022: Side1
+    4300024: Side2
+    4300026: Side3
+    4300028: Side4
+    4300030: Side5
+    4300032: Side6
+    4300034: Side7
+    4300036: Side8
+    4300038: Side
+    4300040: Side9
+    4300042: Side10
+    4300044: Side11
+    4300046: Side12
+    4300048: Side13
+    4300050: Side14
+    4300052: Side15
+    4300054: Side16
+    4300056: Side
+    4300058: Side1
+    4300060: Side2
+    4300062: Side3
+    4300064: Side4
+    4300066: Side5
+    4300068: Side6
+    4300070: Side7
+    4300072: Side8
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
