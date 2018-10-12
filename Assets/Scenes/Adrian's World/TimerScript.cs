@@ -6,13 +6,13 @@ using UnityEngine;
 public class TimerScript : MonoBehaviour
 {
 
-    event EventHandler<CustomTimerEvent>     CountdownDone;
+    event EventHandler<CustomTimerEvent> CountdownDone;
 
     [SerializeField]
     float timerCountdown;
 
     //
-    bool isCounting = false;
+    bool isCounting = true;
 
 	// Use this for initialization
 	void Start ()

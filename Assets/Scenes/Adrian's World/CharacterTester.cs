@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterTester : MonoBehaviour
 {
 
+    //
     [SerializeField]
     KeyCode forwardKey;
     [SerializeField]
@@ -28,9 +29,11 @@ public class CharacterTester : MonoBehaviour
     Vector3 cameraOffset;
     Rigidbody thisRigidbody;
 
+    //
+    Animator doorAnimator;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         SetupCharacter();
 
@@ -73,14 +76,14 @@ public class CharacterTester : MonoBehaviour
         if (Input.GetKey(forwardKey))
         {
 
-            this.transform.position += (thisCamera.transform.rotation * Vector3.forward) * characterSpeed * Time.deltaTime;
+            this.transform.position += (cameraRotation * Vector3.forward) * characterSpeed * Time.deltaTime;
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
 
         }
         if (Input.GetKey(backwardKey))
         {
 
-            this.transform.position += (thisCamera.transform.rotation * Vector3.back) * characterSpeed * Time.deltaTime;
+            this.transform.position += (cameraRotation * Vector3.back) * characterSpeed * Time.deltaTime;
 
             //
             ignorePitchAndRoll.y -= 180;
@@ -93,7 +96,7 @@ public class CharacterTester : MonoBehaviour
         if (Input.GetKey(leftKey))
         {
 
-            this.transform.position += (thisCamera.transform.rotation * Vector3.left) * characterSpeed * Time.deltaTime;
+            this.transform.position += (cameraRotation * Vector3.left) * characterSpeed * Time.deltaTime;
 
             //
             ignorePitchAndRoll.y -= 90;
@@ -106,7 +109,7 @@ public class CharacterTester : MonoBehaviour
         if (Input.GetKey(rightKey))
         {
 
-            this.transform.position += (thisCamera.transform.rotation * Vector3.right) * characterSpeed * Time.deltaTime;
+            this.transform.position += (cameraRotation * Vector3.right) * characterSpeed * Time.deltaTime;
 
             //
             ignorePitchAndRoll.y += 90;
@@ -128,30 +131,23 @@ public class CharacterTester : MonoBehaviour
             if (Physics.Raycast(checkerRay, out interactCheck, 10.0f))
             {
 
+                
                 Debug.Log(interactCheck.collider.name);
                 if (interactCheck.collider.tag == "Door")
                 {
 
-                    
-                    Animator doorAnimator = interactCheck.collider.transform.parent.gameObject.GetComponent<Animator>();
+                    doorAnimator = interactCheck.collider.transform.parent.gameObject.GetComponent<Animator>();
 
-                    Debug.Log(doorAnimator.GetCurrentAnimatorStateInfo(0).IsName("JustTheDoor"));
-                    if (doorAnimator.GetCurrentAnimatorStateInfo(0).IsName("JustTheDoor"))
+                    if (doorAnimator.GetFloat("Blend") == 0)
                     {
 
-                        doorAnimator.Play("DoorOpenClip");
+                        doorAnimator.SetFloat("Blend", 2);
 
                     }
-                    if (doorAnimator.GetCurrentAnimatorStateInfo(0).IsName("DoorCloseClip"))
+                    else if (doorAnimator.GetFloat("Blend") == 2)
                     {
 
-                        doorAnimator.Play("DoorOpenClip");
-
-                    }
-                    if (doorAnimator.GetCurrentAnimatorStateInfo(0).IsName("DoorOpenClip"))
-                    {
-
-                        doorAnimator.Play("DoorCloseClip");
+                        doorAnimator.SetFloat("Blend", 0);
 
                     }
 
@@ -160,6 +156,8 @@ public class CharacterTester : MonoBehaviour
             }
 
         }
+
+        Blend();
 
     }
 
@@ -200,13 +198,16 @@ public class CharacterTester : MonoBehaviour
         thisCamera.transform.LookAt(this.transform);
 
     }
-
-    private void OnDrawGizmos()
+    
+    public void Blend()
     {
-        
 
-        
+        if (doorAnimator != null)
+        {
+
+            float Henlo = doorAnimator.GetFloat("Blend");
+
+        }
 
     }
-
 }
