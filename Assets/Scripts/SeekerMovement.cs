@@ -54,8 +54,8 @@ public class SeekerMovement : MonoBehaviour {
 	void Update () {
 
         //get axis information dynamically as user input is collected
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxis("SeekerMovementX");
+        float moveY = Input.GetAxis("SeekerMovementY");
 
         //move the player object
         rgd.MovePosition(new Vector3(moveX, 0, moveY) * speed * Time.deltaTime + transform.position);
@@ -75,6 +75,7 @@ public class SeekerMovement : MonoBehaviour {
 
 	}
 
+    //Move camera with player
     private void MoveCamera()
     {
         camera.transform.LookAt(this.transform);
@@ -141,6 +142,7 @@ public class SeekerMovement : MonoBehaviour {
 
     }
 
+    //move player more smoothly
     private void MoveToDirection()
     {
         switch (currentDirection)
@@ -209,7 +211,7 @@ public class SeekerMovement : MonoBehaviour {
     //make the stick swing and hit like bat
     private void AttackWithStick()//TO-DO
     {
-        float hit = Input.GetAxis("Fire1");
+        float hit = Input.GetAxis("SeekerHit");
         if(hit!=0)
         {
             //animation and other needed code
