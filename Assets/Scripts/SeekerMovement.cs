@@ -29,6 +29,9 @@ public class SeekerMovement : MonoBehaviour {
     [SerializeField]
     float cameraOffset = 10;
 
+    [SerializeField]
+    float cameraOffsetVertical = 10;
+
     //direction the player can face
     private enum Directions {LEFT,RIGHT,UP,DOWN};
     //current facing direction
@@ -49,13 +52,12 @@ public class SeekerMovement : MonoBehaviour {
         camera = Camera.main;
         camera.transform.position = transform.position+new Vector3(0,0,-cameraOffset);
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+    private void FixedUpdate()
+    {
         //get axis information dynamically as user input is collected
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxis("SeekerMovementX");
+        float moveY = Input.GetAxis("SeekerMovementY");
 
         //move the player object
         rgd.MovePosition(new Vector3(moveX, 0, moveY) * speed * Time.deltaTime + transform.position);
@@ -70,11 +72,14 @@ public class SeekerMovement : MonoBehaviour {
 
         //move the weapon with the player
         MoveStick();
+    }
 
+    private void LateUpdate()
+    {
         MoveCamera();
+    }
 
-	}
-
+    //Move camera with player
     private void MoveCamera()
     {
         camera.transform.LookAt(this.transform);
@@ -84,28 +89,28 @@ public class SeekerMovement : MonoBehaviour {
             case Directions.UP:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(0, 0, -cameraOffset);
+                    camera.transform.position = transform.position + new Vector3(0, cameraOffsetVertical, -cameraOffset);
                     break;
 
                 }
             case Directions.DOWN:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(0, 0,cameraOffset);
+                    camera.transform.position = transform.position + new Vector3(0, cameraOffsetVertical, cameraOffset);
                     break;
 
                 }
             case Directions.LEFT:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(cameraOffset,0, 0);
+                    camera.transform.position = transform.position + new Vector3(cameraOffset, cameraOffsetVertical, 0);
                     break;
 
                 }
             case Directions.RIGHT:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(-cameraOffset,0,0);
+                    camera.transform.position = transform.position + new Vector3(-cameraOffset, cameraOffsetVertical, 0);
                     break;
 
                 }
@@ -141,6 +146,7 @@ public class SeekerMovement : MonoBehaviour {
 
     }
 
+    //move player more smoothly
     private void MoveToDirection()
     {
         switch (currentDirection)
@@ -209,7 +215,7 @@ public class SeekerMovement : MonoBehaviour {
     //make the stick swing and hit like bat
     private void AttackWithStick()//TO-DO
     {
-        float hit = Input.GetAxis("Fire1");
+        float hit = Input.GetAxis("SeekerHit");
         if(hit!=0)
         {
             //animation and other needed code
