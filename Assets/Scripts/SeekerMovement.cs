@@ -29,6 +29,9 @@ public class SeekerMovement : MonoBehaviour {
     [SerializeField]
     float cameraOffset = 10;
 
+    [SerializeField]
+    float cameraOffsetVertical = 10;
+
     //direction the player can face
     private enum Directions {LEFT,RIGHT,UP,DOWN};
     //current facing direction
@@ -49,10 +52,9 @@ public class SeekerMovement : MonoBehaviour {
         camera = Camera.main;
         camera.transform.position = transform.position+new Vector3(0,0,-cameraOffset);
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+    private void FixedUpdate()
+    {
         //get axis information dynamically as user input is collected
         float moveX = Input.GetAxis("SeekerMovementX");
         float moveY = Input.GetAxis("SeekerMovementY");
@@ -70,10 +72,12 @@ public class SeekerMovement : MonoBehaviour {
 
         //move the weapon with the player
         MoveStick();
+    }
 
+    private void LateUpdate()
+    {
         MoveCamera();
-
-	}
+    }
 
     //Move camera with player
     private void MoveCamera()
@@ -85,28 +89,28 @@ public class SeekerMovement : MonoBehaviour {
             case Directions.UP:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(0, 0, -cameraOffset);
+                    camera.transform.position = transform.position + new Vector3(0, cameraOffsetVertical, -cameraOffset);
                     break;
 
                 }
             case Directions.DOWN:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(0, 0,cameraOffset);
+                    camera.transform.position = transform.position + new Vector3(0, cameraOffsetVertical, cameraOffset);
                     break;
 
                 }
             case Directions.LEFT:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(cameraOffset,0, 0);
+                    camera.transform.position = transform.position + new Vector3(cameraOffset, cameraOffsetVertical, 0);
                     break;
 
                 }
             case Directions.RIGHT:
                 {
 
-                    camera.transform.position = transform.position + new Vector3(-cameraOffset,0,0);
+                    camera.transform.position = transform.position + new Vector3(-cameraOffset, cameraOffsetVertical, 0);
                     break;
 
                 }

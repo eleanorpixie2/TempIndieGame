@@ -263,7 +263,6 @@ GameObject:
   - component: {fileID: 516200104}
   - component: {fileID: 516200103}
   - component: {fileID: 516200102}
-  - component: {fileID: 516200107}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -348,46 +347,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 516200101}
   m_LocalRotation: {x: 0.7111227, y: -0, z: -0, w: 0.703068}
-  m_LocalPosition: {x: 0.52520424, y: 0.8975923, z: 0.70126003}
+  m_LocalPosition: {x: 0.983, y: 0.889, z: 0.292}
   m_LocalScale: {x: 0.14337857, y: 0.34650844, z: 0.14503942}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90.65198, y: -0.000015258789, z: -0.000015258789}
---- !u!59 &516200107
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 516200101}
-  m_ConnectedBody: {fileID: 886403333}
-  m_Anchor: {x: 0, y: 1, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.3936453, z: 1.5977461}
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 1
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &886403331
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,8 +388,9 @@ MonoBehaviour:
   stick: {fileID: 516200101}
   frontOffset: 0.9
   sideOffset: 0.3
-  cameraOffset: 10
-  camera: {fileID: 0}
+  cameraOffset: 4.3
+  cameraOffsetVertical: 1.82
+  camera: {fileID: 282840813}
 --- !u!54 &886403333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -467,7 +433,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
