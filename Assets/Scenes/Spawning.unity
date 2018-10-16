@@ -210,11 +210,7 @@ MonoBehaviour:
   - {fileID: 1045803942940912, guid: 9a4a105e6f0cbf04b9e68f7e61f5ba85, type: 2}
   - {fileID: 1971351319335230, guid: 4a236ba7be10b0747adba21532e06d2a, type: 2}
   - {fileID: 1210353098262918, guid: d95f12ae4d1bee041bae44189c15251a, type: 2}
-  AreaVectors:
-  - {x: -30, y: 30}
-  - {x: 30, y: 30}
-  - {x: 30, y: -30}
-  - {x: -30, y: -30}
+  NumOfItemsToSpawn: 250
 --- !u!4 &1455978059
 Transform:
   m_ObjectHideFlags: 0
