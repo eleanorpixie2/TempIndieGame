@@ -34,6 +34,11 @@ public class TimerScript : MonoBehaviour
         return isCounting;
     }
 
+    public float GetTimeLeft()
+    {
+        return timerCountdown;
+    }
+
     private void FixedUpdate()
     {
         if (isCounting)
