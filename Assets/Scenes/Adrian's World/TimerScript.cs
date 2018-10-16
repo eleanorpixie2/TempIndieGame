@@ -12,7 +12,7 @@ public class TimerScript : MonoBehaviour
     float timerCountdown;
 
     //
-    bool isCounting = true;
+    bool isCounting=true;
 
 	// Use this for initialization
 	void Start ()
@@ -28,6 +28,11 @@ public class TimerScript : MonoBehaviour
 
 
 	}
+
+    public bool GetIsCounting()
+    {
+        return isCounting;
+    }
 
     private void FixedUpdate()
     {
