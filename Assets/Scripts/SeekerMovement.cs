@@ -226,13 +226,14 @@ public class SeekerMovement : MonoBehaviour {
 
         if (hit != 0 && GameObject.FindGameObjectsWithTag("bullet").Length<1)
         {
+            //create bullet object
             GameObject bullet = Instantiate(
        prefab,
        stick.transform.position,
        stick.transform.rotation);
             switch (currentDirection)
             {
-
+                //shoot out based on facing direction
                 case Directions.UP:
                     {
 
