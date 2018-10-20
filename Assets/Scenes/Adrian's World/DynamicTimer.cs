@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 class DynamicTimer : RegularTimer
 {
@@ -23,7 +18,7 @@ class DynamicTimer : RegularTimer
     public void AddTime(float moreTime)
     {
 
-        startTime -= moreTime;
+        startTime += moreTime;
 
     }
 
@@ -31,7 +26,7 @@ class DynamicTimer : RegularTimer
     public void SubtractTime(float lessTime)
     {
 
-        startTime += lessTime;
+        startTime -= lessTime;
 
     }
 
