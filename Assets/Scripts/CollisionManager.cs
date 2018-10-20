@@ -11,9 +11,13 @@ public class CollisionManager : MonoBehaviour {
     //the number of hiders the seeker has found
     private int hidersFound;
 
+    //game timer object
+    private GameTimer timer;
+
 	// Use this for initialization
 	void Start () {
         hidersFound = 0;
+        timer = GameObject.FindGameObjectWithTag("GameTimer").GetComponent<GameTimer>();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +33,8 @@ public class CollisionManager : MonoBehaviour {
         {
             //destroys the game object
             Destroy(other.gameObject);
-            //TO-DO: decrease time
+            //decreases amount of time left
+            timer.DecreaseTime(secondsRemoved);
         }
         //if the object is a hider
         if(other.gameObject.tag.Equals("hider"))
