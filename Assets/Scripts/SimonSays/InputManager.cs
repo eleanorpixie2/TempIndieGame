@@ -25,9 +25,9 @@ public class InputManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        Hiders();
-	}
+	//void Update () {
+ //       Hiders();
+	//}
 
     void Hiders()
     {

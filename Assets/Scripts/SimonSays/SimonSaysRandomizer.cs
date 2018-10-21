@@ -9,113 +9,24 @@ public enum Colors { RED, GREEN, BLUE, YELLOW }
 
 public class SimonSaysRandomizer : MonoBehaviour
 {
+    private List<int> ButtonSequence = new List<int>();
+   
+    private int maxButtonRange = 4; // 4 is exclusive
+    private int minButtonRange = 0; // 0 is inclusive
 
-    //holding all the Color States as they are generated
-    //[SerializeField]
-    public Queue<Colors> playBackColors;
-
-    //check if playBackColors has been filled
-    [SerializeField]
-    bool isFilled;
-
-    //how large of a stack should the Randomizer should make
-    [SerializeField]
-    int colorsLimit = 1000;
-
-    // Use this for initialization
-    void Start ()
+    public List<int> RandomizeSequence(int maxSequence)
     {
-        playBackColors = new Queue<Colors>();
-	}
+        ButtonSequence.Clear();
 
-    //Ranges min and max for use with the Random function call
-    private float maxRange = 1000000;
-    private float minRange = 0;
-
-    //used to section off Range by 1/4's
-    private float quarterRange;
-
-    private float randOutput;
-
-    // Update is called once per frame
-    void Update ()
-    {
-        for (int i = 0; i < colorsLimit/5; i++)
+        for (int i = 0; i < maxSequence; i++) //Fill the list until the max is reached.
         {
-            FillStack();
+            ButtonSequence.Add(Random.Range(minButtonRange, maxButtonRange)); //Add a random number into the list. Range is 0 => int < 4
+            Debug.Log("Original" + ButtonSequence[i]);
         }
+
+        return ButtonSequence;
+
 
     }
 
-    /// <summary>
-    /// Checks if playBackColors isFilled, and stores random float in randOutput
-    /// </summary>
-    private void FillStack()
-    {
-        if (!isFilled)
-        {
-            //getting 1/4 of the maxRange
-            quarterRange = maxRange / 4;
-
-            //storing a Random number between minRange and maxRange
-            randOutput = Random.Range(minRange, maxRange);
-
-            CheckRandomOutput();
-        }
-        else
-        {
-            //ClearStack();
-
-        }
-    }
-
-    private void CheckRandomOutput()
-    {
-        if (randOutput <= quarterRange)
-        {
-            AddToStack(Colors.RED);
-        }
-        else if (randOutput <= (quarterRange * 2))
-        {
-            AddToStack(Colors.GREEN);
-        }
-        else if (randOutput <= (quarterRange * 3))
-        {
-            AddToStack(Colors.BLUE);
-        }
-        else if (randOutput < maxRange)
-        {
-            AddToStack(Colors.YELLOW);
-        }
-    }
-
-    private void AddToStack(Colors current)
-    {
-        Debug.Log(playBackColors.Count);
-        if (playBackColors.Count < colorsLimit)
-        {
-            playBackColors.Enqueue(current);
-        }
-        else
-        {
-            isFilled = true;
-        }
-
-    }
-
-    private void ClearStack()
-    {
-        foreach (var color in playBackColors)
-        {
-            Debug.Log(color);
-        }
-        playBackColors.Clear();
-        isFilled = false;
-        Debug.Log("Done");
-    }
-
-    private void DebugCall(Colors current)
-    {
-        Debug.Log(current);
-    }
 }
