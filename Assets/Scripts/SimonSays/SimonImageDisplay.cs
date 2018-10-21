@@ -9,8 +9,7 @@ public class SimonImageDisplay : MonoBehaviour {
 
     public void DisplayImageSequence(Queue<Colors> colors)
     {
-        if (colors.Enqueue()
-        this.GetComponent<Image>().color = colors.Dequeue();
+        
     }
 
         
