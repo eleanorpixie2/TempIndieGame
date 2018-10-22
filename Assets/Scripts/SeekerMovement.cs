@@ -15,6 +15,9 @@ public class SeekerMovement : MonoBehaviour {
     [SerializeField]
     GameObject stick;
 
+    [SerializeField]
+    GameObject prefab;
+
     //weapon's rigidbody
     private Rigidbody rgdStick;
 
@@ -67,6 +70,8 @@ public class SeekerMovement : MonoBehaviour {
 
         //set the facing direction of the seeker object
         SetDirection(moveX, moveY);
+
+        AttackWithStick();
 
         MoveToDirection();
 
@@ -218,9 +223,50 @@ public class SeekerMovement : MonoBehaviour {
     private void AttackWithStick()//TO-DO
     {
         float hit = Input.GetAxis("SeekerHit");
-        if(hit!=0)
+
+        if (hit != 0 && GameObject.FindGameObjectsWithTag("bullet").Length<1)
         {
-            //animation and other needed code
+            //create bullet object
+            GameObject bullet = Instantiate(
+       prefab,
+       stick.transform.position,
+       stick.transform.rotation);
+            switch (currentDirection)
+            {
+                //shoot out based on facing direction
+                case Directions.UP:
+                    {
+
+                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(0, 0,10);
+                        break;
+
+                    }
+                case Directions.DOWN:
+                    {
+
+                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(0, 0,-10);
+                        break;
+
+                    }
+                case Directions.LEFT:
+                    {
+
+                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(-10, 0);
+                        break;
+
+                    }
+                case Directions.RIGHT:
+                    {
+
+                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(10,0);
+                        break;
+
+                    }
+            }
+           
+
+            // Destroy the bullet after 2 seconds
+            Destroy(bullet, 2.0f);
         }
     }
 }

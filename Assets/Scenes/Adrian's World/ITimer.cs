@@ -16,7 +16,9 @@ public interface ITimer
 
     //
     RunTimer TimerCount { get; }
+
     TimerManager managerReference { get; }
+
     GameObject gameobjectReference { get; }   
 
     //
