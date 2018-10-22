@@ -29,14 +29,22 @@ public class TimerScript : MonoBehaviour
 
 	}
 
+    //check to see if the timer is counting
     public bool GetIsCounting()
     {
         return isCounting;
     }
 
+    //return the amount of seconds remaining
     public float GetTimeLeft()
     {
         return timerCountdown;
+    }
+
+    //decrease time left
+    public void DecreaseTimeLeft(int timeToDecrease)
+    {
+        timerCountdown -= timeToDecrease;
     }
 
     private void FixedUpdate()

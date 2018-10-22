@@ -34,4 +34,10 @@ public class GameTimer : MonoBehaviour {
             SceneManagement.GameOver();
         }
 	}
+
+    //decrease total game time
+    public void DecreaseTime(int timeToDecrease)
+    {
+        timer.DecreaseTimeLeft(timeToDecrease);
+    }
 }
