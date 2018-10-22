@@ -9,63 +9,61 @@ public class InputManager : MonoBehaviour {
     [SerializeField]
     int playerNumber;
 
-    //button bools
-    public static bool selectedA;
-    public static bool selectedX;
-    public static bool selectedY;
-    public static bool selectedB;
-
     //Number of players playing
     public static int maxPlayers=2;
 
+    private int buttonIndex;
+
+    public int GetButtonIndex { get { return buttonIndex; } }
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         //max amount of players that can join
         Network.maxConnections=maxPlayers;
 	}
 	
-	// Update is called once per frame
-	//void Update () {
- //       Hiders();
-	//}
-
-    void Hiders()
+    public bool IsHiderInputing()
     {
         //check if button A is pressed
-        if(Input.GetAxis("HiderA"+playerNumber)!=0)
+        if(Input.GetKey("joystick "+ playerNumber + " button 0"))
         {
-            selectedA = true;
+            buttonIndex = 0;
+            return true;
         }
         else/*(Input.GetAxis("HiderA" + playerNumber)==0)*/
         {
-            selectedA = false;
+            return false;
         }
         //check if button b is pressed
-        if (Input.GetAxis("HiderB" + playerNumber) != 0)
+        if (Input.GetKey("joystick " + playerNumber + " button 1"))
         {
-            selectedB = true;
+            buttonIndex = 1;
+            return true;
         }
         else /*(Input.GetAxis("HiderB" + playerNumber) == 0)*/
         {
-            selectedB = false;
+            return false;
         }
         //check if x is pressed
-        if (Input.GetAxis("HiderX" + playerNumber) != 0)
+        if (Input.GetKey("joystick " + playerNumber + " button 2"))
         {
-            selectedX = true;
+            buttonIndex = 2;
+            return true;
         }
         else /*(Input.GetAxis("HiderX" + playerNumber) == 0)*/
         {
-            selectedX = false;
+            return false;
         }
         //check if y is pressed
-        if (Input.GetAxis("HiderY" + playerNumber) != 0)
+        if (Input.GetKey("joystick " + playerNumber + " button 3"))
         {
-            selectedY = true;
+            buttonIndex = 3;
+            return true;
         }
         else /*(Input.GetAxis("HiderY" + playerNumber) == 0)*/
         {
-            selectedY = false;
+            return false;
         }
     }
 }

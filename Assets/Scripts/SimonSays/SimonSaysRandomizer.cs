@@ -21,7 +21,6 @@ public class SimonSaysRandomizer : MonoBehaviour
         for (int i = 0; i < maxSequence; i++) //Fill the list until the max is reached.
         {
             ButtonSequence.Add(Random.Range(minButtonRange, maxButtonRange)); //Add a random number into the list. Range is 0 => int < 4
-            Debug.Log("Original" + ButtonSequence[i]);
         }
 
         return ButtonSequence;
