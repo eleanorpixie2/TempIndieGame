@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class SimonManager : MonoBehaviour {
 
+    [SerializeField] int secondsToWait;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip correctSound;
+    [SerializeField] AudioClip wrongSound;
+
+    
+
     private SimonImageDisplay simonImageDisplay;
     private SimonSaysRandomizer simonSaysRandomizer;
     //[SerializeField] private GameTimer gameTimer;
     private InputManager inputManager;
 
+    private AudioSource audio;
+
     private List<int> sequenceList;
 
-    private int maxiumSequenceLength = 5;// To increase while game is running
+    private int maxiumSequenceLength = 3;// To increase while game is running
     private int next;
 
     private float timeStamp;
@@ -25,6 +35,8 @@ public class SimonManager : MonoBehaviour {
         simonImageDisplay = GetComponent<SimonImageDisplay>();
         simonSaysRandomizer = GetComponent<SimonSaysRandomizer>();
         inputManager = GetComponent<InputManager>();
+
+        audio = GetComponent<AudioSource>();
 
         timeStamp = Mathf.RoundToInt(Time.fixedTime);
     }
@@ -47,13 +59,18 @@ public class SimonManager : MonoBehaviour {
             HandleAndCompareInput();
 	}
 
+
+    //Main Methods
     private void DisplaySequence()
     {
-        if (Mathf.RoundToInt(Time.fixedTime) == timeStamp + 5)
-        {
-            timeStamp = Mathf.RoundToInt(Time.fixedTime);
-
+        
+        if (Mathf.RoundToInt(Time.fixedTime) == timeStamp + secondsToWait)
+         {
+            Debug.Log("Next: " + next);
             simonImageDisplay.DisplayImageSequence(sequenceList[next]);
+            Debug.Log(sequenceList[next]);
+
+            StartCoroutine(TimedSequence());
 
             next++;
 
@@ -63,6 +80,8 @@ public class SimonManager : MonoBehaviour {
                 isDisplayingSequence = false;
                 awaitingPlayerInput = true;
             }
+
+            timeStamp = Mathf.RoundToInt(Time.fixedTime);
         }
     }
 
@@ -79,11 +98,19 @@ public class SimonManager : MonoBehaviour {
             if (sequenceList[next] == buttonIndex)
             {
                 answeredCorrectly = true;
+
+                audio.clip = correctSound;
+                audio.PlayDelayed(0);
+
                 Debug.Log("Correct");
             }
             else
             {
                 answeredCorrectly = false;
+
+                audio.clip = wrongSound;
+                audio.PlayDelayed(0);
+
                 Debug.Log("Wrong");
             }
 
@@ -95,7 +122,20 @@ public class SimonManager : MonoBehaviour {
                 next = 0; //- reset it back to 0
                 isDisplayingSequence = true;
                 awaitingPlayerInput = false;
+
+                StartCoroutine(TimedSequence());
+
+                timeStamp = Mathf.RoundToInt(Time.fixedTime) + 2;
             }
         }
     }
+
+    IEnumerator TimedSequence()
+    {
+        yield return new WaitForSeconds(1);
+
+        simonImageDisplay.Clear();
+    }
+
+    //**
 }

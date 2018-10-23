@@ -26,37 +26,25 @@ public class InputManager : MonoBehaviour {
     public bool IsHiderInputing()
     {
         //check if button A is pressed
-        if(Input.GetKey("joystick "+ playerNumber + " button 0"))
+        if(Input.GetKeyDown("joystick "+ playerNumber + " button 0"))
         {
             buttonIndex = 0;
             return true;
         }
-        else/*(Input.GetAxis("HiderA" + playerNumber)==0)*/
-        {
-            return false;
-        }
         //check if button b is pressed
-        if (Input.GetKey("joystick " + playerNumber + " button 1"))
+        else if (Input.GetKeyDown("joystick " + playerNumber + " button 1"))
         {
             buttonIndex = 1;
             return true;
         }
-        else /*(Input.GetAxis("HiderB" + playerNumber) == 0)*/
-        {
-            return false;
-        }
         //check if x is pressed
-        if (Input.GetKey("joystick " + playerNumber + " button 2"))
+        else if (Input.GetKeyDown("joystick " + playerNumber + " button 2"))
         {
             buttonIndex = 2;
             return true;
         }
-        else /*(Input.GetAxis("HiderX" + playerNumber) == 0)*/
-        {
-            return false;
-        }
         //check if y is pressed
-        if (Input.GetKey("joystick " + playerNumber + " button 3"))
+        else if (Input.GetKeyDown("joystick " + playerNumber + " button 3"))
         {
             buttonIndex = 3;
             return true;
