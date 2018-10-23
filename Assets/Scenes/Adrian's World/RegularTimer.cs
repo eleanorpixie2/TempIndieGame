@@ -18,7 +18,6 @@ public class RegularTimer : ITimer
     public RunTimer TimerCount { get; protected set; }
     // Required reference to manager which only timer knows
     public TimerManager managerReference { get; protected set; }
-
     public GameObject gameobjectReference { get; protected set; }
 
     public RegularTimer(TimerManager manager, float start, float end)
