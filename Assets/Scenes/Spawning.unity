@@ -191,7 +191,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawning
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -207,9 +207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneItems:
-  - {fileID: 1045803942940912, guid: 9a4a105e6f0cbf04b9e68f7e61f5ba85, type: 2}
-  - {fileID: 1971351319335230, guid: 4a236ba7be10b0747adba21532e06d2a, type: 2}
-  - {fileID: 1210353098262918, guid: d95f12ae4d1bee041bae44189c15251a, type: 2}
+  - {fileID: 1310461245968880, guid: f2c8977b443f14541a3848380d137a2b, type: 2}
+  - {fileID: 1972257950973610, guid: 5bb96ae7777a9e747908016782b9df5f, type: 2}
+  - {fileID: 1731079929872928, guid: e9782af3f8a2bcf48b879a9cdb498355, type: 2}
   NumOfItemsToSpawn: 250
 --- !u!4 &1455978059
 Transform:

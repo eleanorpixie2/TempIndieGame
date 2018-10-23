@@ -22,6 +22,7 @@ public class SpawningObjects : MonoBehaviour {
         SpawnRandomObjects();
 
         SpawnArea = GetComponent<BoxCollider>();
+        Debug.Log(SpawnArea.bounds);
     }
 
     private int MaxRange = 10000; //10 thousand
@@ -56,16 +57,15 @@ public class SpawningObjects : MonoBehaviour {
 
                 location = SwapXYValuesFor3D();
 
-                Debug.Log(location);
                 Instantiate(spawnedItem, location, Quaternion.identity, this.transform);
             }
         }
     }
 
     private Vector3 SwapXYValuesFor3D()
-    {   
-                                                      // since the UnitCircle is a Radius of 1 need to halve the bounds
-        Vector3 location = Random.insideUnitCircle * (SpawnArea.bounds.max/2);
+    {
+        //since the UnitCircle is a Radius of 1 need to halve the bounds
+        Vector3 location = Random.insideUnitCircle * (300 / 2);
         location.z = location.y;
         location.y = 0;
         return location;
