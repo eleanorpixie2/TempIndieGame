@@ -20,7 +20,7 @@ public class GameTimer : MonoBehaviour {
 
         //start game timer
 
-        timer = new DynamicTimer(GameObject.Find("TimerManager").GetComponent<TimerManager>(), 0, gameTime);
+        timer = new DynamicTimer(null, 0, gameTime);
         timerText.text = gameTime.ToString();
 	}
 	
