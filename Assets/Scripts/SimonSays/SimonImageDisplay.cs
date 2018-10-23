@@ -15,7 +15,7 @@ public class SimonImageDisplay : MonoBehaviour {
 
     public void Clear()
     {
-        displayImage.sprite = null;
+        displayImage.sprite = ButtonImages[4];
     }
 
         
