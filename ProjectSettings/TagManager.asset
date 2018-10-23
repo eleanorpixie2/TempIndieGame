@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Door
+  - GameTimer
+  - bullet
+  - HiderPlaceholder
+  - Hider0
+  - Hider1
+  - Hider2
   layers:
   - Default
   - TransparentFX

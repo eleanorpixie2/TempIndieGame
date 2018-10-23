@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour {
 
-    //timer object
-    [SerializeField]
-    TimerScript timer;
+    
+    DynamicTimer timer;
     //length of game
     [SerializeField]
     float gameTime=120;
@@ -18,20 +17,27 @@ public class GameTimer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-     
+
         //start game timer
-        timer.StartTimer(gameTime);
+
+        timer = new DynamicTimer(GameObject.Find("TimerManager").GetComponent<TimerManager>(), 0, gameTime);
         timerText.text = gameTime.ToString();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        timerText.text = ((int)timer.GetTimeLeft()).ToString();
+        timerText.text = ((int)timer.remainingSeconds).ToString();
         //if timer runs out, end game
-        if (!timer.GetIsCounting())
+        if (timer.remainingSeconds <= 0)
         {
             SceneManagement.GameOver();
         }
 	}
+
+    //decrease total game time
+    public void DecreaseTime(int timeToDecrease)
+    {
+        timer.SubtractTime(timeToDecrease);
+    }
 }
