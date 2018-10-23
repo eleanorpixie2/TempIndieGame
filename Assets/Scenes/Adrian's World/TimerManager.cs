@@ -15,7 +15,7 @@ public class TimerManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-		
+
         // Make sure Timers is not null
         if (Timers == null)
         {
@@ -24,7 +24,7 @@ public class TimerManager : MonoBehaviour
 
         }
 
-	}
+    }
 
     // Timer Manager must execute timers within FixedUpdate
     // to make sure timers run regardless if physics or

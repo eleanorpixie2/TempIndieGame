@@ -52,7 +52,7 @@ public class SpawningObjects : MonoBehaviour {
     private void SpawnHiders()
     {
         //for i number of players
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < InputManager.maxPlayers; i++)
         {
             int numOfPlayers = Random.Range(1, Statues.Count - 1);
             //Statues[numOfPlayers].gameObject
@@ -88,10 +88,13 @@ public class SpawningObjects : MonoBehaviour {
                 {
                     if (spawnedItem.tag == "HiderPlaceholder")
                     {
-                        Statues.Add(spawnedItem);
+                        Statues.Add(Instantiate(spawnedItem, location, Quaternion.identity, this.transform));
+                    }
+                    else
+                    {
+                        Instantiate(spawnedItem, location, Quaternion.identity, this.transform);
                     }
 
-                    Instantiate(spawnedItem, location, Quaternion.identity, this.transform);
                 }
             }
         }

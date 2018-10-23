@@ -5,7 +5,7 @@ using UnityEngine;
 public class RegularTimer : ITimer
 {
 
-    private float initialStartTime = 0;
+    protected float initialStartTime = 0;
     // Check to see if timer has started
     public virtual bool started { get; protected set; }
     // Timer start countdown from
@@ -53,8 +53,10 @@ public class RegularTimer : ITimer
         }
         managerReference = manager;
 
+        Debug.Log(managerReference);
+
         //
-        AddTimer();
+        //AddTimer();
 
     }
 
