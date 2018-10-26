@@ -69,10 +69,7 @@ public class SpawningObjects : MonoBehaviour {
 
             //changes the gameObjects' tag to Hider
             Statues[numOfPlayers].gameObject.tag = string.Format("Hider{0}", i);
-
-            //changes its color to be easier to see for Debugging
-            Debug.Log("Remove the line below this!!!!");
-            Statues[numOfPlayers].gameObject.GetComponent<Renderer>().material.color = Color.green;
+            Statues[numOfPlayers].AddComponent<HiderCameraSpawn>();
 
         }
     }
