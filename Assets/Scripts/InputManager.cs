@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour {
     //public static bool selectedB;
 
     //Number of players playing
-    public static int maxPlayers=2;
+    public static int maxPlayers = 3;
 
     // Use this for initialization
     void Start () {
