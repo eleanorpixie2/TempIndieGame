@@ -17,6 +17,13 @@ public class TimerManager : MonoBehaviour
     {
 
         // Make sure Timers is not null
+        SetupTimerList();
+
+    }
+
+    public void SetupTimerList()
+    {
+
         if (Timers == null)
         {
 

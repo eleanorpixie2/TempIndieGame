@@ -15,8 +15,6 @@ public class SpawningObjects : MonoBehaviour {
 
     public List<GameObject> Statues = new List<GameObject>();
 
-    public List<GameObject> Players = new List<GameObject>();
-
     private BoxCollider SpawnArea;
 
     private Material HiderMaterial;
@@ -27,14 +25,15 @@ public class SpawningObjects : MonoBehaviour {
         //Retreiving a Reference of the BoxCollider for its bounds
         SpawnArea = GetComponent<BoxCollider>();
 
-        //finds a Material to Tag the Players for debugging
-        DebugPlayers();
 
         //Does the Actual Spawning of the Objects in SceneItems
         SpawnRandomObjects();
 
         //Places the Players Randomly in the scene
         SpawnHiders();
+
+        //finds a Material to Tag the Players for debugging
+        DebugPlayers();
     }
 
     private void DebugPlayers()
@@ -54,10 +53,23 @@ public class SpawningObjects : MonoBehaviour {
         //for i number of players
         for (int i = 0; i < InputManager.maxPlayers; i++)
         {
-            int numOfPlayers = Random.Range(1, Statues.Count - 1);
-            //Statues[numOfPlayers].gameObject
+            List<int> lastPlayer = new List<int>();
+            int numOfPlayers = -1;
+            lastPlayer.Add(numOfPlayers);
+
+            //this check insures that the same player isn't chosen again
+            //if (!lastPlayer.Contains(numOfPlayers))
+            {
+                while (lastPlayer.Contains(numOfPlayers))
+                {
+                    numOfPlayers = Random.Range(1, Statues.Count - 1);
+                }
+                    lastPlayer.Add(numOfPlayers);
+            }
+
+            //changes the gameObjects' tag to Hider
             Statues[numOfPlayers].gameObject.tag = string.Format("Hider{0}", i);
-            Statues[numOfPlayers].gameObject.GetComponent<Renderer>().material.color = Color.green;
+            Statues[numOfPlayers].AddComponent<HiderCameraSpawn>();
 
         }
     }
@@ -86,20 +98,25 @@ public class SpawningObjects : MonoBehaviour {
                 //checks if spawned was true before Creating object in the scene
                 if (isSpawned)
                 {
+
+                    //adds "Statues" to the running Statues list if it has the correct tag
                     if (spawnedItem.tag == "HiderPlaceholder")
                     {
-                        Statues.Add(Instantiate(spawnedItem, location, Quaternion.identity, this.transform));
+                        Statues.Add(spawnedItem = Instantiate(spawnedItem, location, Quaternion.identity, this.transform));
                     }
-                    else
+                    else //otherwise just spawn the item
                     {
-                        Instantiate(spawnedItem, location, Quaternion.identity, this.transform);
+                        spawnedItem = Instantiate(spawnedItem, location, Quaternion.identity, this.transform);
                     }
 
+                    //fixing the objects position so that its center is relative to its parent's world location
+                    spawnedItem.transform.position = spawnedItem.transform.localPosition + (this.transform.position * 2);
                 }
             }
         }
     }
 
+    //This will take the list of Scene Items and choose one to spawn based on how many there are
     private bool GetRandomObject(out GameObject spawnedItem, float rand, int ratio)
     {
         if (rand < ratio)
@@ -138,10 +155,13 @@ public class SpawningObjects : MonoBehaviour {
 
     }
 
+    //using the BoxCollider SpawnArea as a trigger collider it will choose a spot within it
+    //to set the spawn location
     private Vector3 SwapXYValuesFor3D()
     {
         float size;
 
+        //checks which side is larger to use the smaller area so that the objects won't be spawned outside of it
         if (SpawnArea.size.x <= SpawnArea.size.z)
         {
             size = SpawnArea.size.x;
@@ -160,10 +180,4 @@ public class SpawningObjects : MonoBehaviour {
 
         return location;
     }
-
-    // Update is called once per frame
-    void Update ()
-    {
-		
-	}
 }

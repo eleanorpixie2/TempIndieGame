@@ -21,6 +21,7 @@ class DynamicTimer : RegularTimer
     public override void AddTimer()
     {
 
+        managerReference.SetupTimerList();
         managerReference.Timers.Add(this);
 
     }

@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1202242822772204}
+  m_RootGameObject: {fileID: 1012913620212244}
   m_IsPrefabParent: 1
---- !u!1 &1202242822772204
+--- !u!1 &1012913620212244
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4090163746410176}
-  - component: {fileID: 33323288479739328}
-  - component: {fileID: 23582183896698214}
-  - component: {fileID: 65293717518453728}
-  - component: {fileID: 114167145894534944}
-  - component: {fileID: 54102223522296934}
+  - component: {fileID: 4425037879632478}
+  - component: {fileID: 33298798884129618}
+  - component: {fileID: 23503856248444412}
+  - component: {fileID: 65958332317595554}
+  - component: {fileID: 54814633616815954}
   m_Layer: 0
-  m_Name: Seeker
-  m_TagString: Player
+  m_Name: wood_pallet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4090163746410176
+--- !u!4 &4425037879632478
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202242822772204}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -102.7, y: 0.75, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_GameObject: {fileID: 1012913620212244}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -302.26715, y: -389.5, z: -19258.791}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23582183896698214
+--- !u!23 &23503856248444412
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202242822772204}
+  m_GameObject: {fileID: 1012913620212244}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fd469dd1c1ccb6c4faed69f0c87df3da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,57 +78,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33323288479739328
+--- !u!33 &33298798884129618
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202242822772204}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54102223522296934
+  m_GameObject: {fileID: 1012913620212244}
+  m_Mesh: {fileID: 4300000, guid: 868a8d03f636fb64c9ad71e1c31a16c3, type: 3}
+--- !u!54 &54814633616815954
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202242822772204}
+  m_GameObject: {fileID: 1012913620212244}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65293717518453728
+--- !u!65 &65958332317595554
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202242822772204}
+  m_GameObject: {fileID: 1012913620212244}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114167145894534944
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202242822772204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0747c790b18805a4dbfd3b36bf7c60e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  stick: {fileID: 0}
-  prefab: {fileID: 1309833775847276, guid: 2a6ad87de4363b7448b46eccff9284b7, type: 2}
-  frontOffset: 0.9
-  sideOffset: 0.3
-  cameraOffset: 4.3
-  cameraOffsetVertical: 1.82
-  can: {fileID: 0}
-  camera: {fileID: 0}
+  m_Size: {x: 55.74182, y: 6.503213, z: 46.451515}
+  m_Center: {x: 27.870903, y: 3.2516065, z: 23.225761}

@@ -1,27 +1,20 @@
 fileFormatVersion: 2
-guid: 65f83265d0cb37c4ea546576dc8e5fcd
+guid: 61b140ccb046ae54fb64bd5428868373
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pasted__crate4
     400000: //RootNode
-    400002: pasted__crate4
-    2100000: crate
-    2300000: pasted__crate4
-    3300000: pasted__crate4
-    4300000: pasted__crate4
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: crate
-    second: {fileID: 2100000, guid: 70531157e4364b34c80a293dab54c592, type: 2}
+    2100000: lambert1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCube30
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

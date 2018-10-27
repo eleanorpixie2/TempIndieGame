@@ -39,7 +39,6 @@ public class RegularTimer : ITimer
         if (manager == null)
         {
 
-            managerReference = GameObject.Find("TimerManager").GetComponent<TimerManager>();
             if (managerReference == null)
             {
 
@@ -51,12 +50,15 @@ public class RegularTimer : ITimer
             }
 
         }
-        managerReference = manager;
+        else
+        {
 
-        Debug.Log(managerReference);
+            managerReference = manager;
+
+        }
 
         //
-        //AddTimer();
+        AddTimer();
 
     }
 
@@ -78,7 +80,6 @@ public class RegularTimer : ITimer
         if (manager == null)
         {
 
-            managerReference = GameObject.Find("TimerManager").GetComponent<TimerManager>();
             if (managerReference == null)
             {
 
@@ -90,7 +91,13 @@ public class RegularTimer : ITimer
             }
 
         }
-        managerReference = manager;
+        else
+        {
+
+            managerReference = manager;
+
+        }
+
 
         //
         AddTimer();
@@ -116,7 +123,7 @@ public class RegularTimer : ITimer
         if (manager == null)
         {
 
-            managerReference = GameObject.Find("TimerManager").GetComponent<TimerManager>();
+
             if (managerReference == null)
             {
 
@@ -128,7 +135,12 @@ public class RegularTimer : ITimer
             }
 
         }
-        managerReference = manager;
+        else
+        {
+
+            managerReference = manager;
+
+        }
 
         //
         AddTimer();
