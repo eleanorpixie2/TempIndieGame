@@ -13,11 +13,18 @@ public class SceneManagement : MonoBehaviour {
     public Button MenuButton;
     public Button CreditsButton;
     //public Button RestartButton;
-
+    [SerializeField]
+    AudioClip pressed;
+    static AudioClip _pressed;
+    [SerializeField]
+    AudioSource source;
+    static AudioSource _source;
 
     // Use this for initialization
     void Start()
     {
+        AudioClip _pressed=pressed;
+        _source = source;
         //dont destroy this game object
         DontDestroyOnLoad(this);
         //set default resolution
@@ -63,24 +70,28 @@ public class SceneManagement : MonoBehaviour {
     //loads instructions
     void TaskOnClick()
     {
+        source.PlayOneShot(pressed, .25f);
         SceneManager.LoadScene("Instructions");
     }
 
     //exits game
     void TaskOnClick1()
     {
+        source.PlayOneShot(pressed, .25f);
         Application.Quit();
     }
 
     //returns to start menu
     void TaskOnClick2()
     {
+        source.PlayOneShot(pressed, .25f);
         SceneManager.LoadScene("StartMenu");
     }
 
     //loads credits
     void TaskOnClick3()
     {
+        source.PlayOneShot(pressed, .25f);
         SceneManager.LoadScene("Credits");
     }
 
@@ -94,17 +105,20 @@ public class SceneManagement : MonoBehaviour {
     //loads game
     void TaskOnClick5()
     {
+        source.PlayOneShot(pressed, .25f);
         SceneManager.LoadScene("Level1");
     }
 
     //loads win scene
     public static void Win()
     {
-        SceneManager.LoadScene("Victory");
+        _source.PlayOneShot(_pressed, .25f);
+        SceneManager.LoadScene("Win");
     }
     //loads gameover scene
     public static void GameOver()
     {
+        _source.PlayOneShot(_pressed, .25f);
         SceneManager.LoadScene("GameOver");
     }
 

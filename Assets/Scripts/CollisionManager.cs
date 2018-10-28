@@ -8,6 +8,15 @@ public class CollisionManager : MonoBehaviour {
     [SerializeField]
     int secondsRemoved;
 
+    [SerializeField]
+    AudioClip hiderSound;
+
+    [SerializeField]
+    AudioClip emptySound;
+
+    [SerializeField]
+    AudioSource source;    
+        
     //the number of hiders the seeker has found
     private int hidersFound;
 
@@ -31,6 +40,7 @@ public class CollisionManager : MonoBehaviour {
         //if the object isn't a player
         if (other.gameObject.tag.Equals("empty"))
         {
+            source.PlayOneShot(emptySound,.25f);
             //destroys the game object
             Destroy(other.gameObject);
             //decreases amount of time left
@@ -39,6 +49,7 @@ public class CollisionManager : MonoBehaviour {
         //if the object is a hider
         if(other.gameObject.tag.Equals("hider"))
         {
+            source.PlayOneShot(hiderSound,.25f);
             Destroy(other.gameObject);
             //increases number of hiders found
             hidersFound += 1;

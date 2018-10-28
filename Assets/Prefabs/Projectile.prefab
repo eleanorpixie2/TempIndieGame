@@ -113,6 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsRemoved: 10
+  hiderSound: {fileID: 8300000, guid: d3cd16aefa877884db68a3967a8e0686, type: 3}
+  emptySound: {fileID: 8300000, guid: 7a62dd7bc9cda214783f645008f7ac66, type: 3}
+  source: {fileID: 82411190688283958, guid: 461109c18a064064ea6d706a751d07d0, type: 2}
 --- !u!136 &136639307991818250
 CapsuleCollider:
   m_ObjectHideFlags: 1
