@@ -129,7 +129,7 @@ MonoBehaviour:
   prefab: {fileID: 1309833775847276, guid: 2a6ad87de4363b7448b46eccff9284b7, type: 2}
   frontOffset: 0.9
   sideOffset: 0.3
-  cameraOffset: 4.3
-  cameraOffsetVertical: 1.82
+  cameraOffset: 5.18
+  cameraOffsetVertical: 1.88
   can: {fileID: 0}
   camera: {fileID: 0}

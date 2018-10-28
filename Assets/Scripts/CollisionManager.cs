@@ -18,7 +18,7 @@ public class CollisionManager : MonoBehaviour {
     AudioSource source;    
         
     //the number of hiders the seeker has found
-    private int hidersFound;
+    public static int hidersFound;
 
     //game timer object
     private GameTimer timer;

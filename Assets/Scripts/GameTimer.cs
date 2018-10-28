@@ -15,6 +15,10 @@ public class GameTimer : MonoBehaviour {
     [SerializeField]
     Text timerText;
 
+    //text for number of hiders found
+    [SerializeField]
+    Text hidersFoundText;
+
 	// Use this for initialization
 	void Start () {
 
@@ -22,12 +26,14 @@ public class GameTimer : MonoBehaviour {
 
         timer = new DynamicTimer(null, 0, gameTime);
         timerText.text = gameTime.ToString();
+        hidersFoundText.text = "Hiders Found: " + CollisionManager.hidersFound;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         timerText.text = ((int)timer.remainingSeconds).ToString();
+        hidersFoundText.text = "Hiders Found: " + CollisionManager.hidersFound;
         //if timer runs out, end game
         if (timer.remainingSeconds <= 0)
         {
