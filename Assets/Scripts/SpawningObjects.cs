@@ -100,11 +100,11 @@ public class SpawningObjects : MonoBehaviour {
                     //adds "Statues" to the running Statues list if it has the correct tag
                     if (spawnedItem.tag == "HiderPlaceholder")
                     {
-                        Statues.Add(spawnedItem = Instantiate(spawnedItem, location, Quaternion.identity, this.transform));
+                        Statues.Add(spawnedItem = Instantiate(spawnedItem, location, Quaternion.Euler(0, Random.Range(-180, 180), 0), this.transform));
                     }
                     else //otherwise just spawn the item
                     {
-                        spawnedItem = Instantiate(spawnedItem, location, Quaternion.identity, this.transform);
+                        spawnedItem = Instantiate(spawnedItem, location, Quaternion.Euler(0, Random.Range(-180, 180), 0), this.transform);
                     }
 
                     //fixing the objects position so that its center is relative to its parent's world location

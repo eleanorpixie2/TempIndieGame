@@ -11,6 +11,8 @@ TagManager:
   - Hider0
   - Hider1
   - Hider2
+  - GameTimerText
+  - Wall
   layers:
   - Default
   - TransparentFX
