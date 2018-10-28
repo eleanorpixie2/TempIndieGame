@@ -33,7 +33,7 @@ public class SpawningObjects : MonoBehaviour {
         SpawnHiders();
 
         //finds a Material to Tag the Players for debugging
-        DebugPlayers();
+        //DebugPlayers();
     }
 
     private void DebugPlayers()
@@ -58,14 +58,12 @@ public class SpawningObjects : MonoBehaviour {
             lastPlayer.Add(numOfPlayers);
 
             //this check insures that the same player isn't chosen again
-            //if (!lastPlayer.Contains(numOfPlayers))
+
+            while (lastPlayer.Contains(numOfPlayers))
             {
-                while (lastPlayer.Contains(numOfPlayers))
-                {
-                    numOfPlayers = Random.Range(1, Statues.Count - 1);
-                }
-                    lastPlayer.Add(numOfPlayers);
+                numOfPlayers = Random.Range(1, Statues.Count - 1);
             }
+            lastPlayer.Add(numOfPlayers);
 
             //changes the gameObjects' tag to Hider
             Statues[numOfPlayers].gameObject.tag = string.Format("Hider{0}", i);
@@ -154,10 +152,6 @@ public class SpawningObjects : MonoBehaviour {
             spawnedItem = SceneItems[6];
             return true;
         }
-
-
-        spawnedItem = null;
-        return false;
 
     }
 

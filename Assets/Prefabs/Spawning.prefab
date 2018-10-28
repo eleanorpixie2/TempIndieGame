@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1562248351041526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: -2, z: -97.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,8 +68,8 @@ MonoBehaviour:
   - {fileID: 1731079929872928, guid: e9782af3f8a2bcf48b879a9cdb498355, type: 2}
   - {fileID: 1972257950973610, guid: 5bb96ae7777a9e747908016782b9df5f, type: 2}
   - {fileID: 1310461245968880, guid: f2c8977b443f14541a3848380d137a2b, type: 2}
-  - {fileID: 100000, guid: 868a8d03f636fb64c9ad71e1c31a16c3, type: 3}
-  - {fileID: 1210353098262918, guid: d95f12ae4d1bee041bae44189c15251a, type: 2}
+  - {fileID: 1012913620212244, guid: 7621dd6b68336f94cb8aba3707c4cfe4, type: 2}
+  - {fileID: 1035655786131764, guid: e08ec7fe984359c4f9e475214544c0a1, type: 2}
   - {fileID: 1045803942940912, guid: 9a4a105e6f0cbf04b9e68f7e61f5ba85, type: 2}
-  NumOfItemsToSpawn: 350
+  NumOfItemsToSpawn: 250
   Statues: []

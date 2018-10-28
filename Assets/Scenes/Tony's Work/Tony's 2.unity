@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a489fbb513c87a54ab6aae72f8ff0a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   secondsToWait: 2
   correctSound: {fileID: 8300000, guid: b58d335b555646d44b10c8ddc5516ff6, type: 3}
   wrongSound: {fileID: 8300000, guid: aa2d8baaef823334d8fa5f2be7719663, type: 3}
@@ -523,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a489fbb513c87a54ab6aae72f8ff0a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   secondsToWait: 2
   correctSound: {fileID: 8300000, guid: b58d335b555646d44b10c8ddc5516ff6, type: 3}
   wrongSound: {fileID: 8300000, guid: aa2d8baaef823334d8fa5f2be7719663, type: 3}
@@ -605,7 +607,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -631,7 +633,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052153446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 805, y: 225, z: -1406.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -880,6 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a489fbb513c87a54ab6aae72f8ff0a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   secondsToWait: 2
   correctSound: {fileID: 8300000, guid: b58d335b555646d44b10c8ddc5516ff6, type: 3}
   wrongSound: {fileID: 8300000, guid: aa2d8baaef823334d8fa5f2be7719663, type: 3}
