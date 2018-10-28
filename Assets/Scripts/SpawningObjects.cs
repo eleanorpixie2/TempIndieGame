@@ -51,7 +51,7 @@ public class SpawningObjects : MonoBehaviour {
     private void SpawnHiders()
     {
         //for i number of players
-        for (int i = 0; i < InputManager.maxPlayers; i++)
+        for (int i = 0; i < 3; i++)
         {
             List<int> lastPlayer = new List<int>();
             int numOfPlayers = -1;
@@ -149,6 +149,12 @@ public class SpawningObjects : MonoBehaviour {
             spawnedItem = SceneItems[5];
             return true;
         }
+        else
+        {
+            spawnedItem = SceneItems[6];
+            return true;
+        }
+
 
         spawnedItem = null;
         return false;

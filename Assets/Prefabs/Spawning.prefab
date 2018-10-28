@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4374912672266120}
-  - component: {fileID: 114136051470116892}
   - component: {fileID: 65820192506887726}
+  - component: {fileID: 114319600369577114}
   m_Layer: 0
   m_Name: Spawning
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1562248351041526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -2, z: -97.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,9 +51,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 390, y: 1, z: 390}
+  m_Size: {x: 300, y: 1, z: 300}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114136051470116892
+--- !u!114 &114319600369577114
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -61,15 +61,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562248351041526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9dc3b7e2497a84a818f84cdbbfa938, type: 3}
+  m_Script: {fileID: 11500000, guid: a4993f62098ec7e40bb64866fb0f5d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SceneItems:
-  - {fileID: 1310461245968880, guid: f2c8977b443f14541a3848380d137a2b, type: 2}
-  - {fileID: 1972257950973610, guid: 5bb96ae7777a9e747908016782b9df5f, type: 2}
   - {fileID: 1731079929872928, guid: e9782af3f8a2bcf48b879a9cdb498355, type: 2}
-  - {fileID: 1012913620212244, guid: 7621dd6b68336f94cb8aba3707c4cfe4, type: 2}
-  - {fileID: 1971351319335230, guid: 4a236ba7be10b0747adba21532e06d2a, type: 2}
+  - {fileID: 1972257950973610, guid: 5bb96ae7777a9e747908016782b9df5f, type: 2}
+  - {fileID: 1310461245968880, guid: f2c8977b443f14541a3848380d137a2b, type: 2}
+  - {fileID: 100000, guid: 868a8d03f636fb64c9ad71e1c31a16c3, type: 3}
   - {fileID: 1210353098262918, guid: d95f12ae4d1bee041bae44189c15251a, type: 2}
+  - {fileID: 1045803942940912, guid: 9a4a105e6f0cbf04b9e68f7e61f5ba85, type: 2}
   NumOfItemsToSpawn: 350
   Statues: []
