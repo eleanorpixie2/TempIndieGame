@@ -35,6 +35,9 @@ public class SeekerMovement : MonoBehaviour {
     [SerializeField]
     float cameraOffsetVertical = 10;
 
+    [SerializeField]
+    Canvas can;
+
     //direction the player can face
     private enum Directions {LEFT,RIGHT,UP,DOWN};
     //current facing direction
@@ -90,6 +93,7 @@ public class SeekerMovement : MonoBehaviour {
     private void MoveCamera()
     {
         camera.transform.LookAt(this.transform);
+        
         switch (currentDirection)
         {
 
@@ -97,6 +101,7 @@ public class SeekerMovement : MonoBehaviour {
                 {
 
                     camera.transform.position = transform.position + new Vector3(0, cameraOffsetVertical, -cameraOffset);
+                    can.transform.Rotate(new Vector3(0, 0, 0));
                     break;
 
                 }
@@ -104,6 +109,7 @@ public class SeekerMovement : MonoBehaviour {
                 {
 
                     camera.transform.position = transform.position + new Vector3(0, cameraOffsetVertical, cameraOffset);
+                    can.transform.Rotate(new Vector3(0, 0, 0));
                     break;
 
                 }
@@ -111,6 +117,7 @@ public class SeekerMovement : MonoBehaviour {
                 {
 
                     camera.transform.position = transform.position + new Vector3(cameraOffset, cameraOffsetVertical, 0);
+                    can.transform.Rotate(new Vector3(0, 0, 0));
                     break;
 
                 }
@@ -118,6 +125,7 @@ public class SeekerMovement : MonoBehaviour {
                 {
 
                     camera.transform.position = transform.position + new Vector3(-cameraOffset, cameraOffsetVertical, 0);
+                    can.transform.Rotate(new Vector3(0, 0, 0));
                     break;
 
                 }
@@ -156,6 +164,7 @@ public class SeekerMovement : MonoBehaviour {
     //move player more smoothly
     private void MoveToDirection()
     {
+        can.transform.Rotate(new Vector3(0, 0, 0));
         switch (currentDirection)
         {
 

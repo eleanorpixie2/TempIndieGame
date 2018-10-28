@@ -4,15 +4,28 @@ class DynamicTimer : RegularTimer
 {
     public DynamicTimer(TimerManager manager, float start, float end) : base(manager, start, end)
     {
+
+
     }
 
     public DynamicTimer(TimerManager manager, float start, float end, RunTimer TimerDelegate) : base(manager, start, end, TimerDelegate)
     {
+
     }
 
     public DynamicTimer(TimerManager manager, float start, float end, RunTimer TimerDelegate, GameObject gameObject) : base(manager, start, end, TimerDelegate, gameObject)
     {
+
     }
+
+    public override void AddTimer()
+    {
+
+        managerReference.SetupTimerList();
+        managerReference.Timers.Add(this);
+
+    }
+
 
     // Add time to the counter
     public void AddTime(float moreTime)
