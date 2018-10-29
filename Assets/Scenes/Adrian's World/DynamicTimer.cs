@@ -39,7 +39,7 @@ class DynamicTimer : RegularTimer
     public void SubtractTime(float lessTime)
     {
 
-        startTime -= lessTime;
+        startTime += lessTime;
 
     }
 

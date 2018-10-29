@@ -33,7 +33,7 @@ public class SeekerMovement : MonoBehaviour {
     float sideOffset = .5f;
 
     [SerializeField]
-    float cameraOffset = 10;
+    Vector3 cameraOffset;
 
     [SerializeField]
     float cameraOffsetVertical = 10;
@@ -57,10 +57,14 @@ public class SeekerMovement : MonoBehaviour {
 
         //get the rigidbody component instance from the weapon object
         rgdStick = stick.GetComponent<Rigidbody>();
-
+        //
         camera = Camera.main;
-       // camera.transform.position = transform.position+new Vector3(0,0,-cameraOffset);
-	}
+        rgd= this.GetComponent<Rigidbody>();
+
+        //
+        camera.transform.position = this.transform.position + new Vector3(0, 0, cameraOffsetVertical * -1);
+        cameraOffset = camera.transform.position + this.transform.position;
+    }
 
     private void FixedUpdate()
     {
@@ -71,7 +75,7 @@ public class SeekerMovement : MonoBehaviour {
         //move camera 
         //camera.transform.position += (new Vector3(moveX, 0, moveY) * speed * Time.deltaTime);
         //move the player object
-        rgd.MovePosition((new Vector3(moveX, 0, moveY) * speed * Time.deltaTime + transform.position));
+       // rgd.MovePosition(camera.transform.rotation * new Vector3(-moveX, 0, -moveY) * speed * Time.deltaTime + transform.position);
         rgd.freezeRotation=true;
 
         //freeze the rotation of the weapon object
@@ -82,7 +86,7 @@ public class SeekerMovement : MonoBehaviour {
 
         AttackWithStick();
 
-         MoveToDirection();
+        MoveToDirection();
 
         //move the weapon with the player
         MoveStick();
@@ -90,27 +94,43 @@ public class SeekerMovement : MonoBehaviour {
         MoveCamera();
     }
 
-    private void LateUpdate()
-    {
-        
-    }
-
     //Move camera with player
     private void MoveCamera()
     {
 
+        //
+        float mouseX = Input.GetAxis("Horizontal");
+        float mouseY = -Input.GetAxis("Horizontal");
 
-        if (camera.transform.rotation.x < 180)
+        //if (Input.mousePosition.x < Screen.width ||
+        //    Input.mousePosition.x > 0 ||
+        //    Input.mousePosition.y < Screen.height ||
+        //    Input.mousePosition.y > 0)
+        //{
+
+        //    Cursor.lockState = CursorLockMode.Locked;
+
+        //}
+
+        if (mouseX != 0 || mouseY != 0)
         {
-            camera.transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * speed);
+
+            //
+            Quaternion xTurnAngle = new Quaternion();
+            Quaternion yTurnAngle = new Quaternion();
+
+            xTurnAngle = Quaternion.AngleAxis(mouseX, new Vector3(0, 5, 0));
+            yTurnAngle = Quaternion.AngleAxis(mouseY, new Vector3(0, -5, 0));
+            cameraOffset = xTurnAngle * yTurnAngle * cameraOffset;
+
         }
-        else
-        {
-            //note the minus sign!
-            camera.transform.Rotate(Vector3.up, -Input.GetAxis("Horizontal") * speed);
-        }
-        camera.transform.position = new Vector3(transform.position.x, cameraOffsetVertical, 
-            transform.position.z + cameraOffset);
+
+        Vector3 newCameraPosition = this.transform.position + cameraOffset.normalized * cameraOffsetVertical;
+
+        //
+        camera.transform.position = Vector3.Slerp(camera.transform.position, newCameraPosition, 0.1f);
+        camera.transform.LookAt(this.transform);
+
 
     }
 
@@ -118,17 +138,17 @@ public class SeekerMovement : MonoBehaviour {
     private void SetDirection(float x,float y)
     {
         //left
-        if(x<0)
+        if(x < 0)
         {
             currentDirection = Directions.LEFT;
         }
         //right
-        if(x>0)
+        if(x > 0)
         {
             currentDirection = Directions.RIGHT;
         }
         //down
-        if(y<0)
+        if(y < 0)
         {
             currentDirection = Directions.DOWN;
         }
@@ -145,49 +165,63 @@ public class SeekerMovement : MonoBehaviour {
     //move player more smoothly
     private void MoveToDirection()
     {
-        //Vector3 targetPos = camera.transform.position;
-        //targetPos.y = transform.position.y;
-        //Quaternion newRotation = Quaternion.LookRotation(targetPos - transform.position);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 0.5f);
+        Vector3 ignorePitchAndRoll = camera.transform.rotation.eulerAngles;
+        ignorePitchAndRoll.x = 0;
+        ignorePitchAndRoll.z = 0;
+
+        //
+        Quaternion cameraRotation = new Quaternion();
+        cameraRotation.eulerAngles = ignorePitchAndRoll;
 
         Vector3 original = new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
+
+        //get axis information dynamically as user input is collected
+        float moveX = Input.GetAxis("SeekerMovementX");
+        float moveY = Input.GetAxis("SeekerMovementY");
 
         switch (currentDirection)
         {
             case Directions.LEFT:
                 rgd.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+                this.transform.position += (cameraRotation * Vector3.left * moveX) * speed * Time.deltaTime;
+
+                //
+                ignorePitchAndRoll.y -= 90;
+                cameraRotation.eulerAngles = ignorePitchAndRoll;
+
+                //
+                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
                 break;
             case Directions.RIGHT:
                 rgd.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                this.transform.position += (cameraRotation * Vector3.right * -moveX) * speed * Time.deltaTime;
+
+                //
+                ignorePitchAndRoll.y += 90;
+                cameraRotation.eulerAngles = ignorePitchAndRoll;
+
+                //
+                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
                 break;
             case Directions.UP:
-                rgd.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+               // rgd.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                this.transform.position += (cameraRotation * Vector3.forward * -moveY) * speed * Time.deltaTime;
+                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
                 break;
             case Directions.DOWN:
-                rgd.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+               // rgd.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+                this.transform.position += (cameraRotation * Vector3.back * moveY) * speed * Time.deltaTime;
+
+                //
+                ignorePitchAndRoll.y -= 180;
+                cameraRotation.eulerAngles = ignorePitchAndRoll;
+
+                //
+                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
                 break;
             default:
                 break;
         }
-        ////left
-        //if (currentDirection == Directions.LEFT)
-        //{
-        //}
-        ////right
-        //if (currentDirection == Directions.RIGHT)
-        //{
-
-        //}
-        ////down
-        //if (currentDirection == Directions.DOWN)
-        //{
-
-        //}
-        ////up  
-        //if (currentDirection == Directions.UP)
-        //{
-
-        //}
     }
 
     //move weapon with player object
@@ -237,14 +271,12 @@ public class SeekerMovement : MonoBehaviour {
                 //shoot out based on facing direction
                 case Directions.UP:
                     {
-
                         bullet.GetComponent<Rigidbody>().velocity += new Vector3(0, 0,10);
                         break;
 
                     }
                 case Directions.DOWN:
                     {
-
                         bullet.GetComponent<Rigidbody>().velocity += new Vector3(0, 0,-10);
                         break;
 

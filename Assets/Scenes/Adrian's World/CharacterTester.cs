@@ -5,17 +5,17 @@ using UnityEngine;
 public class CharacterTester : MonoBehaviour
 {
 
-    //
-    [SerializeField]
-    KeyCode forwardKey;
-    [SerializeField]
-    KeyCode backwardKey;
-    [SerializeField]
-    KeyCode leftKey;
-    [SerializeField]
-    KeyCode rightKey;
-    [SerializeField]
-    KeyCode interactKey;
+    ////
+    //[SerializeField]
+    //KeyCode forwardKey;
+    //[SerializeField]
+    //KeyCode backwardKey;
+    //[SerializeField]
+    //KeyCode leftKey;
+    //[SerializeField]
+    //KeyCode rightKey;
+    //[SerializeField]
+    //KeyCode interactKey;
 
     //
     [SerializeField]
@@ -30,7 +30,7 @@ public class CharacterTester : MonoBehaviour
     Rigidbody thisRigidbody;
 
     //
-    Animator doorAnimator;
+    //Animator doorAnimator;
 
     // Use this for initialization
     void Start ()
@@ -73,14 +73,16 @@ public class CharacterTester : MonoBehaviour
         Quaternion cameraRotation = new Quaternion();
         cameraRotation.eulerAngles = ignorePitchAndRoll;
 
-        if (Input.GetKey(forwardKey))
+        if (Input.GetAxis("SeekerMovementY") > 0)
         {
 
             this.transform.position += (cameraRotation * Vector3.forward) * characterSpeed * Time.deltaTime;
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
+            ignorePitchAndRoll.x = 0;
+            ignorePitchAndRoll.z = 0;
 
         }
-        if (Input.GetKey(backwardKey))
+        if (Input.GetAxis("SeekerMovementY") < 0)
         {
 
             this.transform.position += (cameraRotation * Vector3.back) * characterSpeed * Time.deltaTime;
@@ -91,9 +93,11 @@ public class CharacterTester : MonoBehaviour
 
             //
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
+            ignorePitchAndRoll.x = 0;
+            ignorePitchAndRoll.z = 0;
 
         }
-        if (Input.GetKey(leftKey))
+        if (Input.GetAxis("SeekerMovementX") < 0)
         {
 
             this.transform.position += (cameraRotation * Vector3.left) * characterSpeed * Time.deltaTime;
@@ -104,9 +108,10 @@ public class CharacterTester : MonoBehaviour
 
             //
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
-
+            ignorePitchAndRoll.x = 0;
+            ignorePitchAndRoll.z = 0;
         }
-        if (Input.GetKey(rightKey))
+        if (Input.GetAxis("SeekerMovementY") > 0)
         {
 
             this.transform.position += (cameraRotation * Vector3.right) * characterSpeed * Time.deltaTime;
@@ -117,47 +122,48 @@ public class CharacterTester : MonoBehaviour
 
             //
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
-
+            ignorePitchAndRoll.x = 0;
+            ignorePitchAndRoll.z = 0;
         }
-        if (Input.GetKeyDown(interactKey))
-        {
+        //if (Input.GetKeyDown(interactKey))
+        //{
 
-            //
-            Ray checkerRay = new Ray(this.transform.position, (this.transform.position + cameraOffset * -1).normalized);
-            RaycastHit interactCheck;
+        //    //
+        //    Ray checkerRay = new Ray(this.transform.position, (this.transform.position + cameraOffset * -1).normalized);
+        //    RaycastHit interactCheck;
 
-            //
-            Debug.DrawLine(this.transform.position, this.transform.position + cameraOffset * -1, new Color(0, 0, 1));
-            if (Physics.Raycast(checkerRay, out interactCheck, 10.0f))
-            {
+        //    //
+        //    Debug.DrawLine(this.transform.position, this.transform.position + cameraOffset * -1, new Color(0, 0, 1));
+        //    if (Physics.Raycast(checkerRay, out interactCheck, 10.0f))
+        //    {
 
                 
-                Debug.Log(interactCheck.collider.name);
-                if (interactCheck.collider.tag == "Door")
-                {
+        //        //Debug.Log(interactCheck.collider.name);
+        //        //if (interactCheck.collider.tag == "Door")
+        //        //{
 
-                    doorAnimator = interactCheck.collider.transform.parent.gameObject.GetComponent<Animator>();
+        //        //    doorAnimator = interactCheck.collider.transform.parent.gameObject.GetComponent<Animator>();
 
-                    if (doorAnimator.GetFloat("Blend") == 0)
-                    {
+        //        //    if (doorAnimator.GetFloat("Blend") == 0)
+        //        //    {
 
-                        doorAnimator.SetFloat("Blend", 2);
+        //        //        doorAnimator.SetFloat("Blend", 2);
 
-                    }
-                    else if (doorAnimator.GetFloat("Blend") == 2)
-                    {
+        //        //    }
+        //        //    else if (doorAnimator.GetFloat("Blend") == 2)
+        //        //    {
 
-                        doorAnimator.SetFloat("Blend", 0);
+        //        //        doorAnimator.SetFloat("Blend", 0);
 
-                    }
+        //        //    }
 
-                }
+        //        //}
 
-            }
+        //    }
 
-        }
+        //}
 
-        Blend();
+        //Blend();
 
     }
 
@@ -165,18 +171,18 @@ public class CharacterTester : MonoBehaviour
     {
 
         //
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = -Input.GetAxis("Mouse Y");
+        float mouseX = Input.GetAxis("Horizontal");
+        float mouseY = -Input.GetAxis("Horizontal");
 
-        if (Input.mousePosition.x < Screen.width ||
-            Input.mousePosition.x > 0 ||
-            Input.mousePosition.y < Screen.height ||
-            Input.mousePosition.y > 0)
-        {
+        //if (Input.mousePosition.x < Screen.width ||
+        //    Input.mousePosition.x > 0 ||
+        //    Input.mousePosition.y < Screen.height ||
+        //    Input.mousePosition.y > 0)
+        //{
 
-            Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.lockState = CursorLockMode.Locked;
 
-        }
+        //}
 
         if (mouseX != 0 || mouseY != 0)
         {
@@ -186,7 +192,7 @@ public class CharacterTester : MonoBehaviour
             Quaternion yTurnAngle = new Quaternion();
 
             xTurnAngle = Quaternion.AngleAxis(mouseX, new Vector3(0, 1, 0));
-            yTurnAngle = Quaternion.AngleAxis(mouseY, new Vector3(-1, 0, 0));
+            yTurnAngle = Quaternion.AngleAxis(mouseY, new Vector3(0, -1, 0));
             cameraOffset = xTurnAngle * yTurnAngle * cameraOffset;
 
         }
@@ -202,12 +208,12 @@ public class CharacterTester : MonoBehaviour
     public void Blend()
     {
 
-        if (doorAnimator != null)
-        {
+        //if (doorAnimator != null)
+        //{
 
-            float Henlo = doorAnimator.GetFloat("Blend");
+        //    float Henlo = doorAnimator.GetFloat("Blend");
 
-        }
+        //}
 
     }
 }

@@ -26,14 +26,14 @@ public class GameTimer : MonoBehaviour {
 
         timer = new DynamicTimer(null, 0, gameTime);
         timerText.text = gameTime.ToString();
-        hidersFoundText.text = "Hiders Found: " + CollisionManager.hidersFound;
+        hidersFoundText.text = "Hiders Found: " + SceneManagement.hidersFound;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         timerText.text = ((int)timer.remainingSeconds).ToString();
-        hidersFoundText.text = "Hiders Found: " + CollisionManager.hidersFound;
+        hidersFoundText.text = "Hiders Found: " + SceneManagement.hidersFound;
         //if timer runs out, end game
         if (timer.remainingSeconds <= 0)
         {

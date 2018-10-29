@@ -20,6 +20,9 @@ public class SceneManagement : MonoBehaviour {
     AudioSource source;
     static AudioSource _source;
 
+    //the number of hiders the seeker has found
+    public static int hidersFound = 0;
+
     // Use this for initialization
     void Start()
     {

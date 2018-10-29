@@ -15,17 +15,14 @@ public class CollisionManager : MonoBehaviour {
     AudioClip emptySound;
 
     [SerializeField]
-    AudioSource source;    
-        
-    //the number of hiders the seeker has found
-    public static int hidersFound;
+    AudioSource source;
 
     //game timer object
     private GameTimer timer;
 
 	// Use this for initialization
-	void Start () {
-        hidersFound = 0;
+	void Awake ()
+    {
         timer = GameObject.FindGameObjectWithTag("GameTimer").GetComponent<GameTimer>();
 	}
 	
@@ -52,9 +49,9 @@ public class CollisionManager : MonoBehaviour {
             source.PlayOneShot(hiderSound, 5f);
             Destroy(other.gameObject);
             //increases number of hiders found
-            hidersFound += 1;
+            SceneManagement.hidersFound += 1;
             //checks to see if all hiders have been found
-            if(hidersFound>=3)
+            if(SceneManagement.hidersFound >=3)
             {
                 SceneManagement.Win();
             }
