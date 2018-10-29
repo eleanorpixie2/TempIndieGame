@@ -38,18 +38,18 @@ public class CollisionManager : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         //if the object isn't a player
-        if (other.gameObject.tag.Equals("empty"))
+        if (other.gameObject.tag.Equals("Untagged") || other.gameObject.tag.Equals("HiderPlaceholder"))
         {
-            source.PlayOneShot(emptySound,.25f);
+            source.PlayOneShot(emptySound, 5f);
             //destroys the game object
             Destroy(other.gameObject);
             //decreases amount of time left
             timer.DecreaseTime(secondsRemoved);
         }
         //if the object is a hider
-        if(other.gameObject.tag.Equals("hider"))
+        if(other.gameObject.tag.Equals("Hider0") || other.gameObject.tag.Equals("Hider1") || other.gameObject.tag.Equals("Hider2"))
         {
-            source.PlayOneShot(hiderSound,.25f);
+            source.PlayOneShot(hiderSound, 5f);
             Destroy(other.gameObject);
             //increases number of hiders found
             hidersFound += 1;

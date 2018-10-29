@@ -7,7 +7,7 @@ public class HiderCameraSpawn : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        
+        print("Location: " + this.transform.position);
 	}
 	
 	// Update is called once per frame

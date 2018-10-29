@@ -82,7 +82,7 @@ public class SeekerMovement : MonoBehaviour {
 
         AttackWithStick();
 
-         //MoveToDirection();
+         MoveToDirection();
 
         //move the weapon with the player
         MoveStick();
@@ -144,30 +144,49 @@ public class SeekerMovement : MonoBehaviour {
     //move player more smoothly
     private void MoveToDirection()
     {
-        Vector3 targetPos = camera.transform.position;
-        targetPos.y = transform.position.y;
-        Quaternion newRotation = Quaternion.LookRotation(targetPos - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 0.5f);
-        //left
-        if (currentDirection == Directions.LEFT)
+        //Vector3 targetPos = camera.transform.position;
+        //targetPos.y = transform.position.y;
+        //Quaternion newRotation = Quaternion.LookRotation(targetPos - transform.position);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 0.5f);
+
+        Vector3 original = new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
+
+        switch (currentDirection)
         {
-           
+            case Directions.LEFT:
+                rgd.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+                break;
+            case Directions.RIGHT:
+                rgd.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                break;
+            case Directions.UP:
+                rgd.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                break;
+            case Directions.DOWN:
+                rgd.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+                break;
+            default:
+                break;
         }
-        //right
-        if (currentDirection == Directions.RIGHT)
-        {
-            
-        }
-        //down
-        if (currentDirection == Directions.DOWN)
-        {
-            
-        }
-        //up  
-        if (currentDirection == Directions.UP)
-        {
-            
-        }
+        ////left
+        //if (currentDirection == Directions.LEFT)
+        //{
+        //}
+        ////right
+        //if (currentDirection == Directions.RIGHT)
+        //{
+
+        //}
+        ////down
+        //if (currentDirection == Directions.DOWN)
+        //{
+
+        //}
+        ////up  
+        //if (currentDirection == Directions.UP)
+        //{
+
+        //}
     }
 
     //move weapon with player object
@@ -176,25 +195,25 @@ public class SeekerMovement : MonoBehaviour {
         //rotate to the left
         if (currentDirection.Equals(Directions.LEFT))
         {
-            stick.transform.position = new Vector3(transform.position.x - frontOffset, transform.position.y, transform.position.z+sideOffset);
+            stick.transform.position = new Vector3(transform.position.x - frontOffset, transform.position.y + frontOffset, transform.position.z+sideOffset);
             rgdStick.rotation = Quaternion.Euler(new Vector3(90, -90));
         }
         //rotate to the right
         if (currentDirection.Equals(Directions.RIGHT))
         {
-            stick.transform.position = new Vector3(transform.position.x + frontOffset, transform.position.y, transform.position.z+sideOffset);
+            stick.transform.position = new Vector3(transform.position.x + frontOffset, transform.position.y + frontOffset, transform.position.z+sideOffset);
             rgdStick.rotation = Quaternion.Euler(new Vector3(90, 90));
         }
         //rotate down
         if (currentDirection.Equals(Directions.DOWN))
         {
-            stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y, transform.position.z - frontOffset);
+            stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y + frontOffset, transform.position.z - frontOffset);
             rgdStick.rotation = Quaternion.Euler(new Vector3(90, 180));
         }
         //rotate up
         if (currentDirection.Equals(Directions.UP))
         {
-            stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y, transform.position.z + frontOffset);
+            stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y + frontOffset, transform.position.z + frontOffset);
             rgdStick.rotation = Quaternion.Euler(new Vector3(90, 360));
         }
     }
@@ -208,9 +227,10 @@ public class SeekerMovement : MonoBehaviour {
         {
             //create bullet object
             GameObject bullet = Instantiate(
-       prefab,
-       stick.transform.position,
-       stick.transform.rotation);
+                               prefab,
+                               stick.transform.position,
+                               stick.transform.rotation);
+
             switch (currentDirection)
             {
                 //shoot out based on facing direction

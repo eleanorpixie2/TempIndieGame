@@ -128,9 +128,9 @@ MonoBehaviour:
   stick: {fileID: 0}
   prefab: {fileID: 1309833775847276, guid: 2a6ad87de4363b7448b46eccff9284b7, type: 2}
   target: {fileID: 0}
-  frontOffset: 1.85
-  sideOffset: 0.9
-  cameraOffset: 10
-  cameraOffsetVertical: 1.88
+  frontOffset: 1
+  sideOffset: 0
+  cameraOffset: 7.5
+  cameraOffsetVertical: 7.5
   can: {fileID: 0}
   camera: {fileID: 0}
