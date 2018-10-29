@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f0084030b36984d9e27e3022cdc7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsRemoved: 10
+  secondsRemoved: 5
   hiderSound: {fileID: 8300000, guid: d3cd16aefa877884db68a3967a8e0686, type: 3}
   emptySound: {fileID: 8300000, guid: 7a62dd7bc9cda214783f645008f7ac66, type: 3}
   source: {fileID: 82692332424962172}
