@@ -112,7 +112,6 @@ public class SimonManager : MonoBehaviour
     //Main Methods
     private void DisplaySequence()
     {
-        
         if (Mathf.RoundToInt(Time.fixedTime) == timeStamp + secondsToWait) //waits every so seconds until displaying the next button
          {
             simonImageDisplay.DisplayImageSequence(sequenceList[next]); //Display the button on the sequence list

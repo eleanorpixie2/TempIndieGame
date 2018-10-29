@@ -27,7 +27,25 @@ public class SimonSaysRandomizer : MonoBehaviour
 
         for (int i = 0; i < maxSequence; i++) //Fill the list until the max is reached.
         {
-            ButtonSequence.Add(Random.Range(minButtonRange, maxButtonRange)); //Add a random number into the list. Range is 0 => int < 4
+            int rand = Random.Range(0, 10000);
+            if (rand < 2500)
+            {
+                rand = 0;
+            }
+            else if (rand < 5000)
+            {
+                rand = 1;
+            }
+            else if(rand < 7500)
+            {
+                rand = 2;
+            }
+            else
+            {
+                rand = 3;
+            }
+
+            ButtonSequence.Add(rand); //Add a random number into the list. Range is 0 => int < 4
         }
 
         return ButtonSequence; //Return the newly created sequence
