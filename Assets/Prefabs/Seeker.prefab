@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202242822772204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -102.7, y: 0.75, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: -102.7, y: 2.15, z: 0}
+  m_LocalScale: {x: 350, y: 350, z: 350}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8486a62bb9f84af459418be42618ed4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202242822772204}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: cc428d1c8336bf84e808c38124859ae9, type: 3}
 --- !u!54 &54102223522296934
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -111,8 +111,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.015055471, y: 0.034297194, z: 0.010061977}
+  m_Center: {x: -0.0006112153, y: -0.0010075364, z: 0.0010219804}
 --- !u!114 &114167145894534944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,9 +127,10 @@ MonoBehaviour:
   speed: 5
   stick: {fileID: 0}
   prefab: {fileID: 1309833775847276, guid: 2a6ad87de4363b7448b46eccff9284b7, type: 2}
-  frontOffset: 0.9
-  sideOffset: 0.3
-  cameraOffset: 5.18
+  target: {fileID: 0}
+  frontOffset: 1.85
+  sideOffset: 0.9
+  cameraOffset: 10
   cameraOffsetVertical: 1.88
   can: {fileID: 0}
   camera: {fileID: 0}

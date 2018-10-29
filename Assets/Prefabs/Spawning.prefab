@@ -51,7 +51,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 300, y: 1, z: 300}
+  m_Size: {x: 380, y: 1, z: 380}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114319600369577114
 MonoBehaviour:
@@ -71,5 +71,6 @@ MonoBehaviour:
   - {fileID: 1012913620212244, guid: 7621dd6b68336f94cb8aba3707c4cfe4, type: 2}
   - {fileID: 1035655786131764, guid: e08ec7fe984359c4f9e475214544c0a1, type: 2}
   - {fileID: 1045803942940912, guid: 9a4a105e6f0cbf04b9e68f7e61f5ba85, type: 2}
+  - {fileID: 1184065064476188, guid: 38ab5880b80a2cc429875a51a7561960, type: 2}
   NumOfItemsToSpawn: 250
   Statues: []
