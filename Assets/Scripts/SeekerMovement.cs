@@ -71,7 +71,7 @@ public class SeekerMovement : MonoBehaviour {
         //move camera 
         //camera.transform.position += (new Vector3(moveX, 0, moveY) * speed * Time.deltaTime);
         //move the player object
-        rgd.MovePosition((new Vector3(moveX, 0, moveY) * speed * Time.deltaTime+transform.position));
+        rgd.MovePosition((new Vector3(moveX, 0, moveY) * speed * Time.deltaTime + transform.position));
         rgd.freezeRotation=true;
 
         //freeze the rotation of the weapon object
@@ -109,7 +109,8 @@ public class SeekerMovement : MonoBehaviour {
             //note the minus sign!
             camera.transform.Rotate(Vector3.up, -Input.GetAxis("Horizontal") * speed);
         }
-        camera.transform.position = new Vector3(transform.position.x, cameraOffsetVertical, transform.position.z + cameraOffset);
+        camera.transform.position = new Vector3(transform.position.x, cameraOffsetVertical, 
+            transform.position.z + cameraOffset);
 
     }
 
