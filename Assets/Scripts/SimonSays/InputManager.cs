@@ -12,37 +12,46 @@ public class InputManager : MonoBehaviour {
 
     public int GetButtonIndex { get { return buttonIndex; } } //Property to get the button index aka the Button pressed
 
+    public List<int> Inputs = new List<int>();
+
+    private void Update()
+    {
+        Inputs.Add(IsHiderInputing());
+    }
+
+    public void ClearListOfInputs()
+    {
+        Inputs.Clear();
+    }
 
     //Return a bool if A,B,X,Y buttons were pressed
-    public bool IsHiderInputing()
+    public int IsHiderInputing()
     {
         //check if button A is pressed
         if(Input.GetKeyDown("joystick "+ playerNumber + " button 0"))
         {
-            buttonIndex = 0;
-            return true;
+            return buttonIndex = 0;
         }
         //check if button b is pressed
         else if (Input.GetKeyDown("joystick " + playerNumber + " button 1"))
         {
-            buttonIndex = 1;
-            return true;
+            return buttonIndex = 1;
+
         }
         //check if x is pressed
         else if (Input.GetKeyDown("joystick " + playerNumber + " button 2"))
         {
-            buttonIndex = 2;
-            return true;
+            return buttonIndex = 2;
+
         }
         //check if y is pressed
         else if (Input.GetKeyDown("joystick " + playerNumber + " button 3"))
         {
-            buttonIndex = 3;
-            return true;
+            return buttonIndex = 3;
         }
         else /*(Input.GetAxis("HiderY" + playerNumber) == 0)*/
         {
-            return false;
+            return -1;
         }
     }
 }

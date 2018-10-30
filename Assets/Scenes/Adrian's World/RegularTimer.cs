@@ -204,11 +204,8 @@ public class RegularTimer : ITimer
     // Resets the timer
     public virtual void ResetTimer()
     {
-
-
         started = false;
         startTime = initialStartTime;
-
     }
 
     // Starts a Timer 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SimoneState { START, PLAYING, AWAITINGINPUT }
+public enum SimoneState { START, PLAYING, AWAITINGINPUT, INPUTRECEIVED }
 public class SimonManager : MonoBehaviour
 {
     public SimoneState currentState;
@@ -29,12 +29,15 @@ public class SimonManager : MonoBehaviour
 
     private float timeStamp; //To get the current time
 
-    private bool isDisplayingSequence; //If currently displaying the button sequence
-    private bool awaitingPlayerInput; //If waiting for player input
+    //private bool isDisplayingSequence; //If currently displaying the button sequence
+    //private bool awaitingPlayerInput; //If waiting for player input
+
+    public bool isInputCorrect;
 
     // Use this for initialization
     private void Awake()
     {
+        isInputCorrect = true;
         currentState = SimoneState.START;
         GetComponentsForSetup();
     }
@@ -51,10 +54,11 @@ public class SimonManager : MonoBehaviour
         timeStamp = Mathf.RoundToInt(Time.fixedTime);//Get the current time at the beginning of the game
     }
 
+    float countDownTimer;
     void Start ()
     {
-
-        StartPlayingState();
+        countDownTimer = 15;
+        
     }
 
     private void StartPlayingState()
@@ -62,8 +66,8 @@ public class SimonManager : MonoBehaviour
         currentState = SimoneState.PLAYING;
 
         next = 0; //Next should start at 0
-        isDisplayingSequence = true;//Sequence should be displayed first
-        awaitingPlayerInput = false;//Then player input after sequence
+        //isDisplayingSequence = true;//Sequence should be displayed first
+        //awaitingPlayerInput = false;//Then player input after sequence
 
         sequenceList = simonSaysRandomizer.RandomizeSequence(maxiumSequenceLength); //Get a randomized sequence list at the start and how long the sequence is
     }
@@ -72,7 +76,19 @@ public class SimonManager : MonoBehaviour
     void Update ()
     {
         UpdateCurrentState();
+        print(currentState);
+    }
 
+    private void UpdateTimer()
+    {
+        if (countDownTimer < 1)
+        {
+            countDownTimer = 15;
+        }
+        else
+        {
+            countDownTimer -= Time.deltaTime;
+        }
     }
 
     private void UpdateCurrentState()
@@ -80,17 +96,22 @@ public class SimonManager : MonoBehaviour
         switch (currentState)
         {
             case SimoneState.START:
+                StartPlayingState();
                 break;
 
             case SimoneState.PLAYING:
                 DisplaySequence();
-                //giving slightly more time as the game progresses and the sequence gets longer
-                secondsToWait = (int)((maxiumSequenceLength) * 1.5);
                 break;
 
             case SimoneState.AWAITINGINPUT:
-                HandleAndCompareInput();
+                IsInputReceived();
+                UpdateTimer();
+                break;
+
+            case SimoneState.INPUTRECEIVED:
+                isInputCorrect = DoesInputMatchSequence();
                 IncreaseSequenceLength();
+                inputManager.ClearListOfInputs();
                 break;
 
             default:
@@ -100,12 +121,9 @@ public class SimonManager : MonoBehaviour
 
     private void IncreaseSequenceLength()
     {
-        //check if 15 seconds have passes
-        if(Time.fixedTime % 15 == 0)
-        {
-            maxiumSequenceLength++;
-            Debug.Log(maxiumSequenceLength + " < Sequence");
-        }
+        maxiumSequenceLength++;
+        sequenceList = simonSaysRandomizer.RandomizeSequence(maxiumSequenceLength); //Get a new randomized sequence
+        Debug.Log(maxiumSequenceLength + " < Sequence");
     }
 
 
@@ -122,28 +140,37 @@ public class SimonManager : MonoBehaviour
 
             if (!(next < maxiumSequenceLength)) // Once int next reaches max 
             {
-                next = 0; //- reset it back to 0
-                isDisplayingSequence = false;//No longer displaying sequence
-                awaitingPlayerInput = true;//Start getting player input
+                //isDisplayingSequence = false;//No longer displaying sequence
+                //awaitingPlayerInput = true;//Start getting player input
                 currentState = SimoneState.AWAITINGINPUT;
             }
 
-            print(timeStamp);
             timeStamp = Mathf.RoundToInt(Time.fixedTime); //Get the current time to update the time to wait until displaying the next image
         }
     }
 
-    private bool HandleAndCompareInput()
+    private void IsInputReceived()
+    {
+        if (countDownTimer < 1)
+        {
+            currentState = SimoneState.INPUTRECEIVED;
+        }
+        next = 0; //- reset it back to 0
+    }
+
+    private bool DoesInputMatchSequence()
     {
         bool answeredCorrectly = false;
 
-        if (inputManager.IsHiderInputing())// && Mathf.RoundToInt(Time.fixedTime) < timeStamp + secondsToWait) //Is the player pressing any of the wanted buttons
+        //simonImageDisplay.DisplayImageSequence(inputManager.Inputs[next]); //Display the button pressed
+        for (int i = 0; i < inputManager.Inputs.Count; i++)
         {
-            int buttonIndex = inputManager.GetButtonIndex; //Get the button index that was pressed
+            if (i > sequenceList.Count)
+            {
+                return answeredCorrectly;
+            }
 
-            simonImageDisplay.DisplayImageSequence(buttonIndex); //Display the button pressed
-
-            if (sequenceList[next] == buttonIndex) //If the button (index) pressed matches the button index on the sequence list
+            if (sequenceList[next] == inputManager.Inputs[next]) //If the button (index) pressed matches the button index on the sequence list
             {
                 answeredCorrectly = true;
 
@@ -163,21 +190,16 @@ public class SimonManager : MonoBehaviour
             {
                 sequenceList = simonSaysRandomizer.RandomizeSequence(maxiumSequenceLength); //Get a new randomized sequence
                 next = 0; //- reset it back to 0
-                isDisplayingSequence = true; //display the new sequence
-                awaitingPlayerInput = false;//stop getting player input
+                //isDisplayingSequence = true; //display the new sequence
+                //awaitingPlayerInput = false;//stop getting player input
 
                 StartCoroutine(TimedSequence());//wait a bit to clear image
 
                 timeStamp = Mathf.RoundToInt(Time.fixedTime) + 2; //Get the current time plus a bit of a delay(2)
             }
+        }
 
-            return answeredCorrectly;
-        }
-        else
-        {
-            awaitingPlayerInput = false;
-            return answeredCorrectly;
-        }
+        return answeredCorrectly;
     }
 
     private void PlayAudioClip(AudioClip clip)

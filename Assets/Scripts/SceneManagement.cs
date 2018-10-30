@@ -26,6 +26,9 @@ public class SceneManagement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
+        Screen.SetResolution(1920, 1080, true);
+
         AudioClip _pressed=pressed;
         _source = source;
         //dont destroy this game object
