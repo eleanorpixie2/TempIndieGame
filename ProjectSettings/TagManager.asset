@@ -13,6 +13,7 @@ TagManager:
   - Hider2
   - GameTimerText
   - Wall
+  - Spawning
   layers:
   - Default
   - TransparentFX

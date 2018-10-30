@@ -126,6 +126,7 @@ public class SeekerMovement : MonoBehaviour {
         }
 
         Vector3 newCameraPosition = this.transform.position + cameraOffset.normalized * cameraOffsetVertical;
+        newCameraPosition.y += 8.0f;
 
         //
         camera.transform.position = Vector3.Slerp(camera.transform.position, newCameraPosition, 0.1f);
@@ -183,7 +184,7 @@ public class SeekerMovement : MonoBehaviour {
         {
             case Directions.LEFT:
                 rgd.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
-                this.transform.position += (cameraRotation * Vector3.left * moveX) * speed * Time.deltaTime;
+                this.transform.position += (cameraRotation * Vector3.left * moveX * -1) * speed * Time.deltaTime;
 
                 //
                 ignorePitchAndRoll.y -= 90;
@@ -194,7 +195,7 @@ public class SeekerMovement : MonoBehaviour {
                 break;
             case Directions.RIGHT:
                 rgd.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-                this.transform.position += (cameraRotation * Vector3.right * -moveX) * speed * Time.deltaTime;
+                this.transform.position += (cameraRotation * Vector3.right * moveX) * speed * Time.deltaTime;
 
                 //
                 ignorePitchAndRoll.y += 90;
@@ -206,15 +207,17 @@ public class SeekerMovement : MonoBehaviour {
             case Directions.UP:
                // rgd.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 this.transform.position += (cameraRotation * Vector3.forward * -moveY) * speed * Time.deltaTime;
+                //
+                ignorePitchAndRoll.y -= 180;
+                cameraRotation.eulerAngles = ignorePitchAndRoll;
+
                 this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
                 break;
             case Directions.DOWN:
                // rgd.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
                 this.transform.position += (cameraRotation * Vector3.back * moveY) * speed * Time.deltaTime;
 
-                //
-                ignorePitchAndRoll.y -= 180;
-                cameraRotation.eulerAngles = ignorePitchAndRoll;
+
 
                 //
                 this.transform.rotation = Quaternion.Lerp(this.transform.rotation, cameraRotation, 0.1f);
@@ -227,30 +230,69 @@ public class SeekerMovement : MonoBehaviour {
     //move weapon with player object
     private void MoveStick()
     {
-        //rotate to the left
-        if (currentDirection.Equals(Directions.LEFT))
+        ////rotate to the left
+        //if (currentDirection.Equals(Directions.LEFT))
+        //{
+        //    stick.transform.position = new Vector3(transform.position.x - frontOffset, transform.position.y + frontOffset, transform.position.z+sideOffset);
+        //    rgdStick.rotation = Quaternion.Euler(new Vector3(90, -90));
+        //}
+        ////rotate to the right
+        //if (currentDirection.Equals(Directions.RIGHT))
+        //{
+        //    stick.transform.position = new Vector3(transform.position.x + frontOffset, transform.position.y + frontOffset, transform.position.z+sideOffset);
+        //    rgdStick.rotation = Quaternion.Euler(new Vector3(90, 90));
+        //}
+        ////rotate down
+        //if (currentDirection.Equals(Directions.DOWN))
+        //{
+        //    stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y + frontOffset, transform.position.z - frontOffset);
+        //    rgdStick.rotation = Quaternion.Euler(new Vector3(90, 180));
+        //}
+        ////rotate up
+        //if (currentDirection.Equals(Directions.UP))
+        //{
+        //    stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y + frontOffset, transform.position.z + frontOffset);
+        //    rgdStick.rotation = Quaternion.Euler(new Vector3(90, 360));
+        //}
+
+        Vector3 stickRotation = this.transform.rotation.eulerAngles;
+        stickRotation.x = 90;
+
+        Quaternion newStickRotation = Quaternion.Euler(stickRotation);
+
+        if(currentDirection.Equals(Directions.LEFT))
         {
-            stick.transform.position = new Vector3(transform.position.x - frontOffset, transform.position.y + frontOffset, transform.position.z+sideOffset);
-            rgdStick.rotation = Quaternion.Euler(new Vector3(90, -90));
+
+            Vector3 newStickPosition = this.transform.position + this.transform.rotation * new Vector3(0, 0, 1) * frontOffset;
+            stick.transform.position = newStickPosition;
+            rgdStick.rotation = newStickRotation;
+
         }
-        //rotate to the right
         if (currentDirection.Equals(Directions.RIGHT))
         {
-            stick.transform.position = new Vector3(transform.position.x + frontOffset, transform.position.y + frontOffset, transform.position.z+sideOffset);
-            rgdStick.rotation = Quaternion.Euler(new Vector3(90, 90));
+
+            Vector3 newStickPosition = this.transform.position + this.transform.rotation * new Vector3(0, 0, -1) * frontOffset * -1;
+            stick.transform.position = newStickPosition;
+            rgdStick.rotation = newStickRotation;
+
         }
-        //rotate down
-        if (currentDirection.Equals(Directions.DOWN))
-        {
-            stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y + frontOffset, transform.position.z - frontOffset);
-            rgdStick.rotation = Quaternion.Euler(new Vector3(90, 180));
-        }
-        //rotate up
         if (currentDirection.Equals(Directions.UP))
         {
-            stick.transform.position = new Vector3(transform.position.x+sideOffset, transform.position.y + frontOffset, transform.position.z + frontOffset);
-            rgdStick.rotation = Quaternion.Euler(new Vector3(90, 360));
+
+            Vector3 newStickPosition = this.transform.position + new Vector3(frontOffset * -1, 0, 0);
+            stick.transform.position = newStickPosition;
+            rgdStick.rotation = newStickRotation;
+
         }
+        if (currentDirection.Equals(Directions.DOWN))
+        {
+
+            Vector3 newStickPosition = this.transform.position + new Vector3(frontOffset, 0, 0);
+            stick.transform.position = newStickPosition;
+            rgdStick.rotation = newStickRotation;
+
+        }
+
     }
 
     //make the stick swing and hit like bat
@@ -266,37 +308,39 @@ public class SeekerMovement : MonoBehaviour {
                                stick.transform.position,
                                stick.transform.rotation);
 
+            Debug.Log("TEST" + this.transform.rotation * new Vector3(-1, 0));
+
             switch (currentDirection)
             {
                 //shoot out based on facing direction
                 case Directions.UP:
                     {
-                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(0, 0,10);
+                        bullet.GetComponent<Rigidbody>().velocity += this.transform.rotation * new Vector3(0, 0, 10);
                         break;
 
                     }
                 case Directions.DOWN:
                     {
-                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(0, 0,-10);
+                        bullet.GetComponent<Rigidbody>().velocity += this.transform.rotation * new Vector3(0, 0, 10);
                         break;
 
                     }
                 case Directions.LEFT:
                     {
 
-                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(-10, 0);
+                        bullet.GetComponent<Rigidbody>().velocity += this.transform.rotation * new Vector3(0, 0, 10);
                         break;
 
                     }
                 case Directions.RIGHT:
                     {
 
-                        bullet.GetComponent<Rigidbody>().velocity += new Vector3(10,0);
+                        bullet.GetComponent<Rigidbody>().velocity += this.transform.rotation * new Vector3(0, 0, 10);
                         break;
 
                     }
             }
-           
+
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);
