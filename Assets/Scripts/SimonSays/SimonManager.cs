@@ -76,7 +76,6 @@ public class SimonManager : MonoBehaviour
     void Update ()
     {
         UpdateCurrentState();
-        print(currentState);
     }
 
     private void UpdateTimer()
@@ -155,7 +154,7 @@ public class SimonManager : MonoBehaviour
         {
             currentState = SimoneState.INPUTRECEIVED;
         }
-        next = 0; //- reset it back to 0
+        next = 0; //reset it back to 0
     }
 
     private bool DoesInputMatchSequence()
@@ -163,6 +162,12 @@ public class SimonManager : MonoBehaviour
         bool answeredCorrectly = false;
 
         //simonImageDisplay.DisplayImageSequence(inputManager.Inputs[next]); //Display the button pressed
+        if (inputManager.Inputs.Count < 1)
+        {
+            currentState = SimoneState.PLAYING;
+            return answeredCorrectly;
+        }
+
         for (int i = 0; i < inputManager.Inputs.Count; i++)
         {
             if (i > sequenceList.Count)

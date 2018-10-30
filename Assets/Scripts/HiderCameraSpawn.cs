@@ -10,7 +10,6 @@ public class HiderCameraSpawn : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
-        print("Location: " + this.transform.position);
     }
 
     private void GettingComponent()
@@ -41,7 +40,6 @@ public class HiderCameraSpawn : MonoBehaviour
         if (!playerSimonManager.GetComponent<SimonManager>().isInputCorrect)
         {
             cam = GameObject.Find("HiderCamera");
-            print(cam);
             //cam.SetActive(true);
             cam.transform.position = this.transform.position + new Vector3(0, 5);
             cam.transform.rotation = this.transform.rotation;

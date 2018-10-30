@@ -14,13 +14,24 @@ public class InputManager : MonoBehaviour {
 
     public List<int> Inputs = new List<int>();
 
-    private void Update()
+    int temp;
+    private void LateUpdate()
     {
-        Inputs.Add(IsHiderInputing());
+        temp = IsHiderInputing();
+
+        if (temp != -1)
+        {
+            Inputs.Add(temp);
+        }
+
     }
 
     public void ClearListOfInputs()
     {
+        foreach (var i in Inputs)
+        {
+            print(i);
+        }
         Inputs.Clear();
     }
 
